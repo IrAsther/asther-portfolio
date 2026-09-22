@@ -45,10 +45,11 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-4);
   list-style: none;
   margin: 0;
   padding: 0;
+  flex-wrap: nowrap;
 }
 
 .navLink {
@@ -59,6 +60,7 @@
   letter-spacing: var(--letter-spacing-wide);
   color: var(--color-text-muted);
   padding: var(--space-2) 0;
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 
@@ -86,6 +88,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  flex-shrink: 0;
 }
 
 .menuButton {
@@ -107,7 +110,7 @@
   color: var(--color-accent);
 }
 
-/* Breakpoint: Show desktop nav on tablet/desktop (>= 768px) */
+/* Breakpoint: Show desktop nav on tablet (768px–1023px) with comfortable fit */
 @media (min-width: 768px) {
   .desktopNav {
     display: block;
@@ -115,5 +118,24 @@
 
   .menuButton {
     display: none;
+  }
+
+  .navList {
+    gap: var(--space-4); /* 16px gap for comfortable fit on 768px–1023px tablet screens */
+  }
+
+  .navLink {
+    letter-spacing: var(--letter-spacing-normal);
+  }
+}
+
+/* Breakpoint: Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+  .navList {
+    gap: var(--space-6); /* 24px gap for spacious desktop layout */
+  }
+
+  .navLink {
+    letter-spacing: var(--letter-spacing-wide);
   }
 }

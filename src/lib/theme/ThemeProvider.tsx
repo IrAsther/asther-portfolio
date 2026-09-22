@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, useTransition } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState, startTransition } from "react";
 
 export type Theme = "light" | "dark" | "system";
 export type ResolvedTheme = "light" | "dark";
@@ -24,26 +24,36 @@ function getSystemTheme(): ResolvedTheme {
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("system");
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light");
-  const [, startTransition] = useTransition();
+  const themeRef = useRef<Theme>("system");
+
+  // Keep themeRef synchronized for event callbacks without re-triggering effects
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
 
   useEffect(() => {
-    // Initial sync from localStorage or document attribute
+    // Initial sync from localStorage or active document attribute
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    const initialTheme: Theme = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
-    const initialResolved: ResolvedTheme =
-      initialTheme === "system" ? getSystemTheme() : initialTheme;
+    const initialTheme: Theme =
+      stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
 
+    const docTheme = document.documentElement.getAttribute("data-theme") as ResolvedTheme | null;
+    const initialResolved: ResolvedTheme =
+      initialTheme === "system"
+        ? (docTheme === "dark" || docTheme === "light" ? docTheme : getSystemTheme())
+        : initialTheme;
+
+    themeRef.current = initialTheme;
     startTransition(() => {
       setThemeState(initialTheme);
       setResolvedTheme(initialResolved);
     });
-
     document.documentElement.setAttribute("data-theme", initialResolved);
 
     // Watch system changes if system theme is selected
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemChange = (e: MediaQueryListEvent) => {
-      if (theme === "system") {
+      if (themeRef.current === "system") {
         const nextResolved: ResolvedTheme = e.matches ? "dark" : "light";
         setResolvedTheme(nextResolved);
         document.documentElement.setAttribute("data-theme", nextResolved);
@@ -52,9 +62,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     mediaQuery.addEventListener("change", handleSystemChange);
     return () => mediaQuery.removeEventListener("change", handleSystemChange);
-  }, [theme]);
+  }, []);
 
   const setTheme = (nextTheme: Theme) => {
+    themeRef.current = nextTheme;
     setThemeState(nextTheme);
     const nextResolved: ResolvedTheme = nextTheme === "system" ? getSystemTheme() : nextTheme;
     setResolvedTheme(nextResolved);
@@ -67,7 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   const toggleTheme = () => {
-    const next = resolvedTheme === "light" ? "dark" : "light";
+    const next: ResolvedTheme = resolvedTheme === "light" ? "dark" : "light";
     setTheme(next);
   };
 

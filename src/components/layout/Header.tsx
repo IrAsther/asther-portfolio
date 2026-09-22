@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -14,6 +14,7 @@ import styles from "./Header.module.css";
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -49,11 +50,13 @@ export function Header() {
           <div className={styles.actions}>
             <ThemeToggle />
             <button
+              ref={menuButtonRef}
               type="button"
               className={styles.menuButton}
               onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open navigation menu"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
             >
               <Menu size={20} aria-hidden="true" />
             </button>
@@ -62,7 +65,11 @@ export function Header() {
       </header>
 
       {/* Responsive Mobile Drawer */}
-      <MobileNav isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileNav
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        triggerRef={menuButtonRef}
+      />
     </>
   );
 }

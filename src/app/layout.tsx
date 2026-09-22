@@ -51,7 +51,7 @@ export default function RootLayout({
             Skip to main content
           </a>
           <Header />
-          <main id="main-content" style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <main id="main-content" className="mainContent">
             {children}
           </main>
           <Footer />
