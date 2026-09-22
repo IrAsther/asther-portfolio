@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { navigationItems } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
+import { BrandWordmark } from "@/components/brand/BrandWordmark";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MobileNav } from "@/components/navigation/MobileNav";
@@ -22,8 +23,7 @@ export function Header() {
         <Container className={styles.inner}>
           {/* Brand */}
           <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} - Home`}>
-            <span>{siteConfig.shortBrand}</span>
-            <span className={styles.brandDot} aria-hidden="true" />
+            <BrandWordmark size="header" />
           </Link>
 
           {/* Desktop Navigation */}

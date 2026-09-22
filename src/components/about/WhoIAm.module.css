@@ -1,0 +1,80 @@
+/* ============================================================
+   WhoIAm — Editorial personal introduction
+   Narrow centered column — strong typographic rhythm
+   ============================================================ */
+
+.section {
+  padding-block: var(--space-20);
+  background-color: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ─── Section label ─── */
+.sectionLabel {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+/* ─── Heading ─── */
+.heading {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-3xl), 4vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ─── Accent rule ─── */
+.accentRule {
+  width: 48px;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  margin-block: var(--space-1);
+}
+
+/* ─── Body copy ─── */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.paragraph {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .paragraph {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 479px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+}

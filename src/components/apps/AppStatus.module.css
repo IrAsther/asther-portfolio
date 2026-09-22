@@ -1,0 +1,91 @@
+/* ============================================================
+   AppStatus — Status Badge Styles for /apps
+   Asther Irakaza Portfolio
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-mono);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.badgeSm {
+  font-size: var(--font-size-xs);
+  padding: 3px var(--space-2-5);
+}
+
+.badgeMd {
+  font-size: var(--font-size-xs);
+  padding: 4px var(--space-3);
+}
+
+.indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+/* Showcase (Verified Live Application) */
+.badgeShowcase {
+  color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
+  border: 1px solid rgba(253, 94, 2, 0.35);
+}
+
+.badgeShowcase .indicator {
+  background-color: var(--color-accent);
+  box-shadow: 0 0 6px rgba(253, 94, 2, 0.5);
+}
+
+/* In Development */
+.badgeInDevelopment {
+  color: var(--color-text);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+}
+
+.badgeInDevelopment .indicator {
+  background-color: var(--color-accent);
+}
+
+/* Prototype */
+.badgePrototype {
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border: 1px dashed var(--color-border);
+}
+
+.badgePrototype .indicator {
+  background-color: var(--color-text-subtle);
+}
+
+/* Architecture */
+.badgeArchitecture {
+  color: var(--color-text-subtle);
+  background-color: var(--color-bg-alt);
+  border: 1px dashed var(--color-border-subtle);
+}
+
+.badgeArchitecture .indicator {
+  background-color: var(--color-border);
+}
+
+/* Concept */
+.badgeConcept {
+  color: var(--color-text-subtle);
+  background-color: var(--color-bg);
+  border: 1px dotted var(--color-border);
+}
+
+.badgeConcept .indicator {
+  background-color: var(--color-border);
+}

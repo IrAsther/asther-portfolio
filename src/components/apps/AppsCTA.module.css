@@ -1,0 +1,122 @@
+/* ============================================================
+   AppsCTA — Page-end CTA card for /apps
+   Visual consistency with AboutCTA & ProjectsCTA
+   ============================================================ */
+
+.section {
+  padding-block: var(--space-20);
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.card {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-16) var(--space-12);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.accentBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), transparent 80%);
+}
+
+.content {
+  max-width: 680px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.badge {
+  display: inline-flex;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.heading {
+  font-family: var(--font-family-sans);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.projectsBtn {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.projectsBtn:hover:not(:disabled) {
+  background-color: var(--color-text);
+  color: var(--color-text-inverse);
+  border-color: var(--color-text);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .card {
+    padding: var(--space-10) var(--space-6);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Dark Theme Overrides
+   ──────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] .projectsBtn {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .projectsBtn:hover:not(:disabled) {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}

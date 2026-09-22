@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-import { PlaceholderSection } from "@/components/ui/PlaceholderSection";
+import { ContactHero } from "@/components/contact/ContactHero";
+import { ContactSection } from "@/components/contact/ContactSection";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with Asther Irakaza — Software Developer & AI/ML Enthusiast.",
+  title: "Contact — Asther Irakaza",
+  description:
+    "Get in touch with Asther Irakaza — Software Developer, AI/ML Enthusiast, and Graphic Designer. Discuss a project, collaboration, or engineering opportunity.",
 };
 
 export default function ContactPage() {
   return (
-    <PlaceholderSection
-      title="Contact"
-      badge="Get in Touch"
-      description="Route foundation established. Professional contact form and verified communication channels will be added in upcoming phases."
-    />
+    <>
+      <ContactHero />
+      <ContactSection />
+    </>
   );
 }

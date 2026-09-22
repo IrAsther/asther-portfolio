@@ -1,0 +1,52 @@
+/* ============================================================
+   ContactHero — Minimal editorial header
+   Asther Irakaza Portfolio
+   ============================================================ */
+
+.hero {
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-12);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.inner {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.eyebrow {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  font-family: var(--font-family-sans);
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--font-family-sans);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-10);
+  }
+}

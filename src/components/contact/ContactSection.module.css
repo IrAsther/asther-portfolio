@@ -1,0 +1,45 @@
+/* ============================================================
+   ContactSection — Two-column editorial layout
+   Asther Irakaza Portfolio
+   ============================================================ */
+
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-24);
+  background-color: var(--color-bg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.leftCol,
+.rightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ──────────────────────────────
+   Responsive
+   ────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-16);
+  }
+
+  .grid {
+    gap: var(--space-10);
+  }
+}

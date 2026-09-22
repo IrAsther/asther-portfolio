@@ -20,23 +20,10 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing-wider);
-  color: var(--color-text);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  flex-shrink: 0;
 }
 
-.brandDot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-accent);
-}
 
 .desktopNav {
   display: none;

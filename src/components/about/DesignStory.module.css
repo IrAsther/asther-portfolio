@@ -1,0 +1,173 @@
+/* ============================================================
+   DesignStory — Asymmetric editorial split layout
+   Text left, stacked design images right
+   ============================================================ */
+
+.section {
+  padding-block: var(--space-20);
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+/* ============================================================
+   TEXT COLUMN (left)
+   ============================================================ */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.sectionLabel {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.heading {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-2xl), 3.5vw, var(--font-size-4xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.accentRule {
+  width: 40px;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  margin-block: calc(-1 * var(--space-2)) 0;
+}
+
+.paragraph {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ============================================================
+   VISUAL COLUMN (right) — stacked offset images
+   ============================================================ */
+.visualCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Primary image — full width of column */
+.imageMain {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.imageMain:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Secondary image — pushed right for offset editorial feel */
+.imageSecondary {
+  margin-left: var(--space-8);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-slow);
+}
+
+.imageSecondary:hover {
+  transform: translateY(-4px);
+}
+
+.imgFigure {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (768px–1023px)
+   ============================================================ */
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .visualCol {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .imageMain {
+    flex: 1;
+  }
+
+  .imageSecondary {
+    flex: 0.75;
+    margin-left: 0;
+    margin-top: var(--space-6);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (< 768px)
+   ============================================================ */
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .visualCol {
+    flex-direction: column;
+  }
+
+  .imageSecondary {
+    margin-left: var(--space-6);
+    margin-top: 0;
+    flex: 1;
+  }
+}
+
+@media (max-width: 479px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .imageSecondary {
+    margin-left: var(--space-4);
+  }
+}
+
+/* ============================================================
+   DARK THEME
+   ============================================================ */
+[data-theme="dark"] .imageMain,
+[data-theme="dark"] .imageSecondary {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border);
+}

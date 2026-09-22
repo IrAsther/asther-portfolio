@@ -1,0 +1,283 @@
+/* ============================================================
+   Hero Section — Asther Irakaza Portfolio
+   Two-column editorial layout with natural transparent portrait
+   Stacks to single column on mobile
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--header-height));
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  padding-block: var(--space-16);
+}
+
+/* --- Two-column inner grid --- */
+.inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+/* ============================================================
+   TEXT COLUMN
+   ============================================================ */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  z-index: 1;
+}
+
+.wordmarkRow {
+  margin-bottom: var(--space-1);
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+.name {
+  font-family: var(--font-family-sans);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+  opacity: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.roleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.tagline {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-xl), 2.2vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-tight);
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+.roles {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-subtle);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-wide);
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+
+.bio {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: var(--space-2) 0 0 0;
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  opacity: 0;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+/* Outline button: use brand teal border in light mode for contrast on cream bg */
+.ctaOutline {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.ctaOutline:hover:not(:disabled) {
+  background-color: var(--color-text);
+  color: var(--color-text-inverse);
+  border-color: var(--color-text);
+}
+
+/* ============================================================
+   PORTRAIT COLUMN — NATURAL INTEGRATION WITHOUT BOXES / CARDS
+   ============================================================ */
+.portraitCol {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  animation: fadeIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.portraitStage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Controlled minimal architectural accent line */
+.accentLine {
+  position: absolute;
+  bottom: 0;
+  right: 15%;
+  width: 2px;
+  height: 65%;
+  background-color: var(--color-accent);
+  opacity: 0.3;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.portraitFigure {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 440px;
+  object-fit: contain;
+  /* Drop-shadow follows transparent silhouette contours naturally */
+  filter: drop-shadow(0 16px 32px rgba(2, 51, 65, 0.08));
+  transition: transform var(--transition-slow);
+}
+
+.portraitStage:hover .portraitFigure {
+  transform: translateY(-4px);
+}
+
+/* ============================================================
+   BOTTOM FADE — blends into next section
+   ============================================================ */
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (768px – 1023px)
+   ============================================================ */
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .textCol {
+    align-items: center;
+    order: 2;
+  }
+
+  .bio {
+    max-width: 600px;
+  }
+
+  .portraitCol {
+    order: 1;
+  }
+
+  .portraitStage {
+    max-width: 320px;
+  }
+
+  .portraitFigure {
+    max-width: 320px;
+  }
+
+  .ctas {
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (< 480px)
+   ============================================================ */
+@media (max-width: 479px) {
+  .hero {
+    padding-block: var(--space-10);
+  }
+
+  .name {
+    font-size: clamp(2rem, 9vw, 2.5rem);
+  }
+
+  .roles {
+    font-size: var(--font-size-sm);
+  }
+
+  .portraitStage {
+    max-width: 240px;
+  }
+
+  .portraitFigure {
+    max-width: 240px;
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   DARK THEME OVERRIDES
+   ============================================================ */
+[data-theme="dark"] .ctaOutline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .ctaOutline:hover:not(:disabled) {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+}
+
+[data-theme="dark"] .portraitFigure {
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.45));
+}

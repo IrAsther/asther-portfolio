@@ -1,0 +1,109 @@
+/* ============================================================
+   BrandWordmark.module.css
+   "ASTHER" — Premium technology brand wordmark
+   Pure text · Space Grotesk · CSS Modules · Design Tokens
+   ============================================================ */
+
+/* --- Base wordmark shell --- */
+.wordmark {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+
+  /* Geometric, tight, balanced */
+  font-weight: 700; /* Space Grotesk max — bold geometric presence */
+  letter-spacing: 0.12em; /* Wide optical spacing for uppercase readability */
+  text-transform: uppercase;
+  line-height: 1;
+
+  /* Light theme: deep teal */
+  color: var(--color-text); /* #023341 in light, #FCF5E3 in dark via token */
+
+  /* Micro-transitions for theme switching */
+  transition: color var(--transition-base);
+
+  /* Prevent wrap */
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* --- Letter clusters --- */
+.letters {
+  color: inherit;
+}
+
+/* Final "R" — accent focal point */
+.accentLetter {
+  color: var(--color-accent); /* #FD5E02 */
+  transition: color var(--transition-base);
+}
+
+/* --- Accent mark: thin horizontal bar anchored below the full word --- */
+.accentMark {
+  position: absolute;
+  bottom: -5px;
+  right: 0; /* Right-anchored — aligns with the accent "R" */
+  width: 2.2em; /* Approximately spans "ER" optical width */
+  height: 2.5px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
+  opacity: 0.7;
+  transition: opacity var(--transition-base), width var(--transition-base);
+}
+
+/* Subtle hover: accent mark extends inward, not wildly */
+.wordmark:hover .accentMark {
+  opacity: 1;
+  width: 2.8em;
+}
+
+/* ============================================================
+   SIZES
+   ============================================================ */
+
+/* Header — compact, high precision */
+.header {
+  font-size: 1.25rem; /* 20px — nav-scale */
+  letter-spacing: 0.14em;
+}
+
+/* Hero — large, commanding presence */
+.hero {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+
+/* Hero accent mark repositioned for larger scale */
+.hero .accentMark {
+  bottom: -8px;
+  height: 3px;
+  width: 2em;
+}
+
+.hero:hover .accentMark {
+  width: 2.6em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 767px) {
+  .header {
+    font-size: 1.125rem; /* 18px — compact mobile header */
+    letter-spacing: 0.12em;
+  }
+
+  .hero {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+    letter-spacing: 0.14em;
+  }
+}
+
+/* ============================================================
+   DARK THEME
+   color-text token already resolves to #FCF5E3 in dark mode —
+   no override needed for .letters.
+   accent token stays #FD5E02 in both themes — no override needed.
+   ============================================================ */

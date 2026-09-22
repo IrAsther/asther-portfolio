@@ -1,0 +1,287 @@
+/* ============================================================
+   AboutHero — About Page Hero Section
+   Editorial two-column layout — matches Homepage Hero visual language
+   ============================================================ */
+
+.hero {
+  position: relative;
+  background-color: var(--color-bg-alt);
+  padding-block: var(--space-20) var(--space-16);
+  overflow: hidden;
+}
+
+/* ─── Two-column grid ─── */
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 0.75fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+/* ============================================================
+   TEXT COLUMN
+   ============================================================ */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  opacity: 0;
+  animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
+.name {
+  font-family: var(--font-family-sans);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+/* ─── Role group ─── */
+.roleGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+.rolePrimary {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-base), 1.6vw, var(--font-size-xl));
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.roleSeparator {
+  color: var(--color-border);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-lg);
+  line-height: 1;
+}
+
+.roleSecondary {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-sm), 1.4vw, var(--font-size-base));
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-subtle);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* ─── Intro paragraph ─── */
+.intro {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+  max-width: 520px;
+  margin: var(--space-2) 0 0;
+  opacity: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+
+/* ─── CTAs ─── */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  opacity: 0;
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.ctaOutline {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.ctaOutline:hover:not(:disabled) {
+  background-color: var(--color-text);
+  color: var(--color-text-inverse);
+  border-color: var(--color-text);
+}
+
+/* ============================================================
+   PORTRAIT COLUMN
+   ============================================================ */
+.portraitCol {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  opacity: 0;
+  animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.portraitStage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 400px;
+}
+
+.accentLine {
+  position: absolute;
+  bottom: 0;
+  right: 12%;
+  width: 2px;
+  height: 60%;
+  background-color: var(--color-accent);
+  opacity: 0.28;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.portraitFigure {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 28px rgba(2, 51, 65, 0.08));
+  transition: transform var(--transition-slow);
+}
+
+.portraitStage:hover .portraitFigure {
+  transform: translateY(-4px);
+}
+
+/* ─── Bottom fade ─── */
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (768px – 1023px)
+   ============================================================ */
+@media (max-width: 1023px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .textCol {
+    align-items: center;
+    order: 2;
+  }
+
+  .intro {
+    max-width: 580px;
+  }
+
+  .portraitCol {
+    order: 1;
+  }
+
+  .portraitStage {
+    max-width: 280px;
+  }
+
+  .portraitFigure {
+    max-width: 280px;
+  }
+
+  .ctas {
+    justify-content: center;
+  }
+
+  .roleGroup {
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (< 480px)
+   ============================================================ */
+@media (max-width: 479px) {
+  .hero {
+    padding-block: var(--space-12) var(--space-10);
+  }
+
+  .name {
+    font-size: clamp(1.875rem, 8vw, 2.5rem);
+  }
+
+  .portraitStage {
+    max-width: 200px;
+  }
+
+  .portraitFigure {
+    max-width: 200px;
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   DARK THEME OVERRIDES
+   ============================================================ */
+[data-theme="dark"] .ctaOutline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .ctaOutline:hover:not(:disabled) {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+}
+
+[data-theme="dark"] .portraitFigure {
+  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.45));
+}

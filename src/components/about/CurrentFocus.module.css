@@ -1,0 +1,122 @@
+/* ============================================================
+   CurrentFocus — Numbered focus area list
+   Clean row list with mono index numbers and accent markers
+   ============================================================ */
+
+.section {
+  padding-block: var(--space-20);
+  background-color: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sectionLabel {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.heading {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-3xl), 4vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ─── Focus list ─── */
+.focusList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.focusItem {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background-color var(--transition-fast), padding-left var(--transition-fast);
+  border-radius: var(--radius-sm);
+}
+
+.focusItem:first-child {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.focusItem:hover {
+  background-color: var(--color-surface);
+  padding-left: var(--space-4);
+}
+
+.focusIndex {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  opacity: 0.6;
+  letter-spacing: var(--letter-spacing-wider);
+  text-align: right;
+}
+
+.focusLabel {
+  font-family: var(--font-family-sans);
+  font-size: clamp(var(--font-size-base), 1.5vw, var(--font-size-xl));
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-snug);
+}
+
+/* ─── Footer note ─── */
+.note {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  margin: 0;
+  letter-spacing: var(--letter-spacing-wide);
+  opacity: 0.8;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 767px) {
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .focusItem {
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@media (max-width: 479px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .focusItem:hover {
+    padding-left: var(--space-2);
+  }
+}
