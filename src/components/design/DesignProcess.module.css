@@ -1,0 +1,126 @@
+/* ============================================================
+   DesignProcess.module.css
+   Architectural 3-step approach section
+   Zero rounded corners · Thin line dividers · Intentional whitespace
+   ============================================================ */
+
+.section {
+  position: relative;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  background-color: transparent;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Section Header Strip
+   ──────────────────────────────────────────────────────────── */
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.labelGroup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.875rem;
+}
+
+.indexNumber {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  letter-spacing: var(--letter-spacing-wider);
+}
+
+.verticalDivider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: var(--color-border);
+  align-self: center;
+}
+
+.sectionLabel {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.metaLabel {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--color-text-subtle);
+}
+
+/* ────────────────────────────────────────────────────────────
+   3 Steps Grid
+   ──────────────────────────────────────────────────────────── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.stepTop {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  margin-bottom: 1rem;
+}
+
+.stepNumber {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+}
+
+.stepDash {
+  font-family: var(--font-family-sans);
+  color: var(--color-border-hover);
+}
+
+.stepTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  line-height: 1.1;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.stepSummary {
+  font-family: var(--font-family-sans);
+  font-size: clamp(0.9375rem, 1.1vw, 1rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 38ch;
+  margin: 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stepItem {
+    padding-top: 1.25rem;
+  }
+}

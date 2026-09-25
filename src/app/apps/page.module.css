@@ -1,0 +1,15 @@
+/* ============================================================
+   Apps Page Wrapper — Seamless Brand Background Integration
+   ============================================================ */
+
+.pageWrapper {
+  position: relative;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.pageContent {
+  position: relative;
+  z-index: 1;
+}

@@ -6,7 +6,7 @@
 .section {
   padding-top: var(--space-16);
   padding-bottom: var(--space-24);
-  background-color: var(--color-bg);
+  background-color: transparent;
 }
 
 .grid {

@@ -1,0 +1,193 @@
+/* ============================================================
+   ProjectsBackground.module.css
+   Architectural background system derived from the Asther logo
+   Quiet, restrained depth · Zero content interference
+   ============================================================ */
+
+.backgroundRoot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--color-bg);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Primary Top-Right Emblem System (Derived from logo sphere)
+   ──────────────────────────────────────────────────────────── */
+.topRightSystem {
+  position: absolute;
+  top: -100px;
+  right: -180px;
+  width: clamp(680px, 58vw, 1150px);
+  aspect-ratio: 1 / 1;
+  transform-origin: center center;
+  animation: logoArcDrift 55s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes logoArcDrift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-14px, 10px, 0) rotate(1.2deg);
+  }
+  100% {
+    transform: translate3d(-8px, -12px, 0) rotate(-0.8deg);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Counter-Balance Mid-Left System (Derived from outer sweep)
+   ──────────────────────────────────────────────────────────── */
+.midLeftSystem {
+  position: absolute;
+  top: 44%;
+  left: -240px;
+  width: clamp(520px, 46vw, 900px);
+  aspect-ratio: 1 / 1;
+  transform-origin: center center;
+  animation: counterArcDrift 65s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes counterArcDrift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(12px, -10px, 0) rotate(-1deg);
+  }
+  100% {
+    transform: translate3d(6px, 14px, 0) rotate(0.6deg);
+  }
+}
+
+.svgGraphic {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Logo Ribbon Curves & Concentric Hairline Opacities
+   ──────────────────────────────────────────────────────────── */
+.ribbonFillAccent {
+  opacity: 0.045;
+  transition: opacity 300ms ease;
+}
+
+.ribbonFillAccentLight {
+  opacity: 0.035;
+}
+
+.ribbonFillTeal {
+  opacity: 0.025;
+}
+
+.hairline {
+  opacity: 0.38;
+}
+
+.hairlineDashed {
+  opacity: 0.28;
+}
+
+.datumLine {
+  opacity: 0.45;
+}
+
+.angleLine {
+  opacity: 0.3;
+}
+
+.accentGuideLine {
+  opacity: 0.16;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Architectural Background Grid Guidelines
+   ──────────────────────────────────────────────────────────── */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px);
+  background-size: clamp(160px, 16.666vw, 240px) 100%;
+  opacity: 0.08;
+  mask-image: radial-gradient(circle at 60% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at 60% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Dark Theme Adjustments
+   ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] .ribbonFillAccent {
+  opacity: 0.06;
+}
+
+[data-theme="dark"] .ribbonFillAccentLight {
+  opacity: 0.045;
+}
+
+[data-theme="dark"] .ribbonFillTeal {
+  opacity: 0.035;
+}
+
+[data-theme="dark"] .hairline {
+  opacity: 0.28;
+}
+
+[data-theme="dark"] .gridOverlay {
+  opacity: 0.05;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive Rules
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .topRightSystem {
+    top: -60px;
+    right: -120px;
+    width: clamp(550px, 60vw, 850px);
+  }
+
+  .midLeftSystem {
+    left: -180px;
+    width: clamp(420px, 45vw, 650px);
+  }
+
+  .ribbonFillAccent {
+    opacity: 0.035;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On mobile/tablet, keep only the primary top system, hide counter-balance to ensure clean hierarchy */
+  .midLeftSystem {
+    display: none;
+  }
+
+  .topRightSystem {
+    top: -40px;
+    right: -140px;
+    width: 520px;
+  }
+
+  .gridOverlay {
+    display: none;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Reduced Motion
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .topRightSystem,
+  .midLeftSystem {
+    animation: none !important;
+    transform: none !important;
+  }
+}

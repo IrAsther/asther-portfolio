@@ -1,36 +1,30 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import styles from "./DesignCTA.module.css";
 
 export function DesignCTA() {
   return (
     <section className={styles.section} aria-labelledby="design-cta-heading">
       <Container>
-        <div className={styles.card}>
-          <div className={styles.accentBorder} aria-hidden="true" />
+        <div className={styles.ctaBox}>
+          <div className={styles.accentCorner} aria-hidden="true" />
+
           <div className={styles.content}>
-            <span className={styles.badge}>Collaboration</span>
+            <span className={styles.eyebrow}>NEXT STEP</span>
             <h2 id="design-cta-heading" className={styles.heading}>
-              Let&apos;s Build Something Visual
+              Have a project in mind?
             </h2>
-            <p className={styles.description}>
-              Whether you are planning a digital application interface, a brand identity system,
-              structured publication layouts, or a complete software product that requires
-              intentional visual communication, let&apos;s talk.
+            <p className={styles.subheading}>
+              View my work or get in touch.
             </p>
+
             <div className={styles.actions}>
-              <Button href="/contact" variant="primary" size="lg" id="design-cta-contact">
-                Start a Conversation
-              </Button>
-              <Button
-                href="/projects"
-                variant="outline"
-                size="lg"
-                id="design-cta-projects"
-                className={styles.projectsBtn}
-              >
-                View System Projects
-              </Button>
+              <Link href="/contact" className={styles.primaryBtn} id="design-cta-contact">
+                Get in touch
+              </Link>
+              <Link href="/projects" className={styles.secondaryBtn} id="design-cta-projects">
+                View engineering work
+              </Link>
             </div>
           </div>
         </div>

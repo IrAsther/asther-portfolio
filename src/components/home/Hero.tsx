@@ -1,17 +1,28 @@
 import Image from "next/image";
+import { siteConfig } from "@/data/siteConfig";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { BrandWordmark } from "@/components/brand/BrandWordmark";
+import { HeroPortrait } from "./HeroPortrait";
 import styles from "./Hero.module.css";
 
 export function Hero() {
   return (
     <section className={styles.hero} aria-label="Introduction">
+      {/* Drifting pattern — decorative, aria-hidden */}
+      <div className={styles.heroPattern} aria-hidden="true" />
+
       <Container className={styles.inner}>
         {/* Text column */}
         <div className={styles.textCol}>
           <div className={styles.wordmarkRow}>
-            <BrandWordmark size="hero" as="div" />
+            <Image
+              src="/Asther_logo.png"
+              alt={`${siteConfig.name} Logo`}
+              width={160}
+              height={160}
+              priority
+              className={styles.heroLogo}
+            />
           </div>
 
           <h1 className={styles.name}>Asther Irakaza</h1>
@@ -45,24 +56,16 @@ export function Hero() {
               Contact Me
             </Button>
           </div>
+
+          <div className={styles.scrollHint} aria-hidden="true">
+            <span className={styles.scrollLine} />
+            <span className={styles.scrollLabel}>Scroll to explore</span>
+          </div>
         </div>
 
-        {/* Portrait column — transparent cut-out standing naturally in composition */}
+        {/* Portrait column — premium framed portrait with parallax & depth */}
         <div className={styles.portraitCol}>
-          <div className={styles.portraitStage}>
-            {/* Subtle architectural vertical line accent — controlled brand marker */}
-            <div className={styles.accentLine} aria-hidden="true" />
-
-            <Image
-              src="/hero-portrait-transparent.webp"
-              alt="Asther Irakaza — Software Developer"
-              width={516}
-              height={484}
-              priority
-              className={styles.portraitFigure}
-              sizes="(max-width: 479px) 240px, (max-width: 767px) 290px, (max-width: 1023px) 340px, 440px"
-            />
-          </div>
+          <HeroPortrait />
         </div>
       </Container>
 

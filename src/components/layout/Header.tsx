@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { navigationItems } from "@/data/navigation";
 import { siteConfig } from "@/data/siteConfig";
-import { BrandWordmark } from "@/components/brand/BrandWordmark";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MobileNav } from "@/components/navigation/MobileNav";
@@ -23,7 +23,14 @@ export function Header() {
         <Container className={styles.inner}>
           {/* Brand */}
           <Link href="/" className={styles.brand} aria-label={`${siteConfig.name} - Home`}>
-            <BrandWordmark size="header" />
+            <Image
+              src="/Asther_logo.png"
+              alt={`${siteConfig.name} Logo`}
+              width={80}
+              height={80}
+              priority
+              className={styles.brandLogo}
+            />
           </Link>
 
           {/* Desktop Navigation */}

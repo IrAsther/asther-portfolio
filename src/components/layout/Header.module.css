@@ -22,6 +22,40 @@
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  margin-right: var(--space-4);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.brand:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.brandLogo {
+  width: auto;
+  height: 64px; /* Mobile rule: 64px */
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .brand {
+    margin-right: var(--space-6);
+  }
+
+  .brandLogo {
+    height: 72px; /* Tablet rule: 72px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand {
+    margin-right: var(--space-8);
+  }
+
+  .brandLogo {
+    height: 80px; /* Desktop rule: 80px */
+  }
 }
 
 
@@ -43,7 +77,7 @@
   position: relative;
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-weight: 600;
   letter-spacing: var(--letter-spacing-wide);
   color: var(--color-text-muted);
   padding: var(--space-2) 0;
@@ -57,7 +91,7 @@
 
 .navLink.active {
   color: var(--color-accent);
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
 }
 
 .navLink.active::after {

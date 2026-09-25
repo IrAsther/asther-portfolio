@@ -11,11 +11,12 @@
   align-items: baseline;
   gap: 0;
 
-  /* Geometric, tight, balanced */
-  font-weight: 700; /* Space Grotesk max — bold geometric presence */
-  letter-spacing: 0.12em; /* Wide optical spacing for uppercase readability */
+  /* Archivo Black display styling */
+  font-family: var(--font-family-display);
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 0.95;
 
   /* Light theme: deep teal */
   color: var(--color-text); /* #023341 in light, #FCF5E3 in dark via token */
@@ -65,14 +66,17 @@
 /* Header — compact, high precision */
 .header {
   font-size: 1.25rem; /* 20px — nav-scale */
-  letter-spacing: 0.14em;
+  letter-spacing: 0.04em;
 }
 
 /* Hero — large, commanding presence */
 .hero {
+  font-family: var(--font-family-display);
   font-size: clamp(2.75rem, 6vw, 4.5rem);
-  letter-spacing: 0.16em;
-  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  font-weight: 400;
 }
 
 /* Hero accent mark repositioned for larger scale */
@@ -92,12 +96,13 @@
 @media (max-width: 767px) {
   .header {
     font-size: 1.125rem; /* 18px — compact mobile header */
-    letter-spacing: 0.12em;
+    letter-spacing: 0.04em;
   }
 
   .hero {
     font-size: clamp(2rem, 10vw, 2.75rem);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
   }
 }
 

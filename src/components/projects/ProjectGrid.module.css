@@ -1,79 +1,380 @@
 /* ============================================================
-   ProjectGrid — Grid layout for architectures and builds
-   Asther Irakaza Portfolio
+   ProjectGrid.module.css
+   Editorial Left / Center / Right Horizontal Composition
+   Sharp architectural geometry · Zero rounded UI · Restrained
    ============================================================ */
 
 .section {
-  padding-block: var(--space-20);
-  background-color: var(--color-bg);
+  padding-block: var(--space-16) var(--space-20);
+  background-color: transparent;
 }
 
-.header {
-  max-width: 680px;
+/* ────────────────────────────────────────────────────────────
+   FLAGSHIP SHOWCASE: Left / Center / Right Balanced Composition
+   Open editorial layout across 3 zones (No rigid table cells)
+   ──────────────────────────────────────────────────────────── */
+.flagshipShowcase {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 0.95fr;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-10);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+  margin-bottom: var(--space-16);
+  outline: none;
+}
+
+.flagshipShowcase:hover {
+  border-color: var(--color-text-muted);
+  background-color: var(--color-surface-hover, var(--color-surface));
+}
+
+.flagshipShowcase:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ZONE 1 (LEFT): Human Context & Problem */
+.flagshipLeft {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2-5);
-  margin-bottom: var(--space-12);
+  gap: var(--space-4);
+  padding-right: var(--space-4);
 }
 
-.headerTag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.sectionIndex {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-accent);
-}
-
-.sectionTagline {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: uppercase;
-  color: var(--color-text-subtle);
-}
-
-.heading {
+.flagshipCategory {
   font-family: var(--font-family-sans);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+  font-weight: 500;
+}
+
+.flagshipTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(2.4rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);
   margin: 0;
 }
 
-.subheading {
+.flagshipSummary {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
+  line-height: 1.6;
   color: var(--color-text-muted);
   margin: 0;
 }
 
-.grid {
+.flagshipContext {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: 1.65;
+  color: var(--color-text-subtle);
+  margin: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-4);
+}
+
+/* ZONE 2 (CENTER): The Strongest Visual Element */
+.flagshipCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+}
+
+.screenshotFrame {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 9 / 16;
+  max-height: 460px;
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.flagshipImage {
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 450ms ease;
+}
+
+.flagshipShowcase:hover .flagshipImage {
+  transform: scale(1.025);
+}
+
+/* ZONE 3 (RIGHT): Technical Details, Specs & Action */
+.flagshipRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-left: var(--space-4);
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.specBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.specLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+  font-weight: 600;
+}
+
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specItem {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.focusNote {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+.flagshipAction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+  transition: transform 200ms ease;
+}
+
+.flagshipShowcase:hover .flagshipAction {
+  transform: translateX(4px);
+}
+
+/* ────────────────────────────────────────────────────────────
+   SUPPORTING PROJECTS SECTION: Honest, Asymmetric Composition
+   (No fake diagram graphics or placeholder UI)
+   ──────────────────────────────────────────────────────────── */
+.subheadingRow {
+  margin-bottom: var(--space-6);
+}
+
+.sectionSubhead {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+  margin: 0;
+  font-weight: 600;
+}
+
+.secondaryGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1.1fr 1fr;
   gap: var(--space-8);
+  align-items: stretch;
+}
+
+.projectCard {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border-radius: 0;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+  outline: none;
+}
+
+.projectCard:hover {
+  border-color: var(--color-text-muted);
+  background-color: var(--color-surface-hover, var(--color-surface));
+}
+
+.projectCard:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.cardTitle {
+  font-family: var(--font-family-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.cardSummary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.cardFocus {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+  color: var(--color-text-subtle);
+  margin: 0;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-3);
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.cardTech {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.cardAction {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: transform 200ms ease;
+  white-space: nowrap;
+}
+
+.projectCard:hover .cardAction {
+  transform: translateX(4px);
 }
 
 /* ────────────────────────────────────────────────────────────
    Responsive
    ──────────────────────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .flagshipShowcase {
+    grid-template-columns: 1fr 1fr;
+    padding: var(--space-8);
+  }
 
-@media (max-width: 1023px) {
-  .grid {
+  .flagshipCenter {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .flagshipLeft {
+    grid-column: 1;
+    grid-row: 1;
+    padding-right: 0;
+  }
+
+  .flagshipRight {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-left: 0;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: var(--space-6);
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .secondaryGrid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 768px) {
+  .flagshipShowcase {
+    grid-template-columns: 1fr;
+    padding: var(--space-6);
+    gap: var(--space-6);
+  }
+
+  .flagshipCenter {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .flagshipRight {
+    grid-column: 1;
+    grid-row: auto;
+    padding-top: var(--space-4);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .section {
-    padding-block: var(--space-12);
+    padding-block: var(--space-12) var(--space-16);
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Reduced Motion
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .flagshipImage,
+  .flagshipAction,
+  .cardAction {
+    transition: none !important;
+    transform: none !important;
   }
 }

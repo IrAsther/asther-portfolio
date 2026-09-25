@@ -38,19 +38,20 @@
 }
 
 .heading {
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-display);
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  font-weight: 400;
+  line-height: 1;
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);
-  margin: 0;
+  margin: 0 0 var(--space-1) 0;
 }
 
 .subheading {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
+  line-height: 1.7;
+  max-width: 65ch;
   color: var(--color-text-muted);
   margin: 0;
 }
@@ -68,17 +69,20 @@
 .clusterCard {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
+  border-left: 3px solid transparent;
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .clusterCard:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
+  border-left-color: var(--color-accent);
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 .clusterHeader {
@@ -101,9 +105,10 @@
 }
 
 .clusterTitle {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-display);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.15;
   color: var(--color-text);
   margin: 0;
 }
@@ -113,25 +118,33 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--space-2);
 }
 
 .skillItem {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0;
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 3px var(--space-3);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
+.skillItem:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* dot is now hidden — pill style replaces the bullet layout */
 .skillDot {
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-accent);
-  flex-shrink: 0;
+  display: none;
 }
 
 .footerNote {

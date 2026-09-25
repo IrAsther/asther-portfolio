@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { AboutPortrait } from "./AboutPortrait";
 import styles from "./AboutHero.module.css";
 
 export function AboutHero() {
@@ -63,20 +63,9 @@ export function AboutHero() {
           </div>
         </div>
 
-        {/* Portrait column */}
+        {/* Portrait column — premium layered portrait */}
         <div className={styles.portraitCol}>
-          <div className={styles.portraitStage}>
-            <div className={styles.accentLine} aria-hidden="true" />
-            <Image
-              src="/hero-portrait-transparent.webp"
-              alt="Asther Irakaza — Software Developer and Graphic Designer"
-              width={516}
-              height={484}
-              priority
-              className={styles.portraitFigure}
-              sizes="(max-width: 479px) 200px, (max-width: 767px) 260px, (max-width: 1023px) 300px, 400px"
-            />
-          </div>
+          <AboutPortrait />
         </div>
       </Container>
 

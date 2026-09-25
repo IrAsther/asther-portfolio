@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { AboutHero } from "@/components/about/AboutHero";
-import { WhoIAm } from "@/components/about/WhoIAm";
-import { Journey } from "@/components/about/Journey";
-import { Education } from "@/components/about/Education";
-import { TechnicalDirection } from "@/components/about/TechnicalDirection";
-import { DesignStory } from "@/components/about/DesignStory";
-import { ValuesMission } from "@/components/about/ValuesMission";
-import { CurrentFocus } from "@/components/about/CurrentFocus";
+import { AboutIntro } from "@/components/about/AboutIntro";
+import { AboutStats } from "@/components/about/AboutStats";
+import { AboutSkills } from "@/components/about/AboutSkills";
+import { AboutTimeline } from "@/components/about/AboutTimeline";
+import { AboutGallery } from "@/components/about/AboutGallery";
 import { AboutCTA } from "@/components/about/AboutCTA";
 
 export const metadata: Metadata = {
@@ -18,31 +16,25 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main id="main-content">
-      {/* 01 — About Hero */}
+      {/* 01 — Hero */}
       <AboutHero />
 
-      {/* 02 — Who I Am */}
-      <WhoIAm />
+      {/* 02 — Intro: who I am, 2 paragraphs */}
+      <AboutIntro />
 
-      {/* 03 — My Journey */}
-      <Journey />
+      {/* 03 — Stats metrics row */}
+      <AboutStats />
 
-      {/* 04 — Education */}
-      <Education />
+      {/* 04 — Skills cards */}
+      <AboutSkills />
 
-      {/* 05 — Technical Direction */}
-      <TechnicalDirection />
+      {/* 05 — Timeline */}
+      <AboutTimeline />
 
-      {/* 06 — Design & Creative */}
-      <DesignStory />
+      {/* 06 — Design gallery */}
+      <AboutGallery />
 
-      {/* 07 — Values & Mission */}
-      <ValuesMission />
-
-      {/* 08 — Current Focus */}
-      <CurrentFocus />
-
-      {/* 09 — Final CTA */}
+      {/* 07 — CTA */}
       <AboutCTA />
     </main>
   );

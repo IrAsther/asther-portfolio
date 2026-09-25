@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { AppStatusBadge } from "./AppStatus";
 import type { AppItem } from "@/data/apps";
 import styles from "./FeaturedApp.module.css";
 
@@ -12,125 +11,100 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
   return (
     <section className={styles.section} aria-labelledby="featured-app-heading">
       <Container>
-        <div className={styles.header}>
-          <div className={styles.headerTag}>
-            <span className={styles.sectionIndex}>01</span>
-            <span className={styles.sectionTagline}>Featured Product Showcase</span>
+        {/* Section Header Strip */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.labelGroup}>
+            <span className={styles.indexNumber}>01</span>
+            <div className={styles.verticalDivider} aria-hidden="true" />
+            <h2 id="featured-app-heading" className={styles.sectionLabel}>
+              {app.name}
+            </h2>
           </div>
-          <h2 id="featured-app-heading" className={styles.heading}>
-            Flagship Application
-          </h2>
-          <p className={styles.subheading}>
-            Dandaza+ is a verified mobile utility engineered to bring clarity and structure
-            to daily activity reporting and organizational data tracking.
-          </p>
+          <span className={styles.statusText}>{app.status}</span>
         </div>
 
+        {/* Editorial Layout: Content Left, Visual Right */}
         <div className={styles.layout}>
-          {/* Left Column: Product Information & Architectural Insights */}
-          <div className={styles.contentColumn}>
-            <div className={styles.statusRow}>
-              <span className={styles.category}>{app.category}</span>
-              <AppStatusBadge status={app.status} statusType={app.statusType} />
-            </div>
-
-            <h3 className={styles.appName}>{app.name}</h3>
+          {/* Left: Copy */}
+          <div className={styles.contentCol}>
+            <span className={styles.category}>{app.category}</span>
 
             <p className={styles.description}>{app.description}</p>
 
-            <div className={styles.insightBox}>
-              <h4 className={styles.insightTitle}>Problem & Necessity</h4>
-              <p className={styles.insightText}>{app.problem}</p>
+            <div className={styles.problemBlock}>
+              <span className={styles.blockLabel}>Problem</span>
+              <p className={styles.blockText}>{app.problem}</p>
             </div>
 
-            <div className={styles.insightBox}>
-              <h4 className={styles.insightTitle}>Technical Direction</h4>
-              <p className={styles.insightText}>{app.direction}</p>
+            <div className={styles.directionBlock}>
+              <span className={styles.blockLabel}>Direction</span>
+              <p className={styles.blockText}>{app.direction}</p>
             </div>
 
             {app.highlights && app.highlights.length > 0 && (
-              <div className={styles.highlightsBlock}>
-                <h4 className={styles.highlightsTitle}>Key Capabilities</h4>
-                <ul className={styles.highlightsList}>
-                  {app.highlights.map((item) => (
-                    <li key={item} className={styles.highlightItem}>
-                      <span className={styles.highlightDot} aria-hidden="true" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className={styles.highlightsList}>
+                {app.highlights.map((item) => (
+                  <div key={item} className={styles.highlightItem}>
+                    <span className={styles.highlightMark} aria-hidden="true">—</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             )}
 
-            <div className={styles.techSection}>
-              <h4 className={styles.techTitle}>Application Stack</h4>
-              <div className={styles.techPills} aria-label="Technologies used in Dandaza+">
-                {app.technologies.map((tech) => (
-                  <span key={tech} className={styles.techPill}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.provenanceNotice}>
-              <span className={styles.noticeIcon} aria-hidden="true">✓</span>
-              <div className={styles.noticeBody}>
-                <strong className={styles.noticeHeading}>Verified Product Evidence</strong>
-                <p className={styles.noticeText}>
-                  Screenshots shown are authentic captures from the Dandaza+ mobile codebase.
-                  No artificial metric counters or mock adoption numbers are used.
-                </p>
-              </div>
+            <div className={styles.techRow}>
+              {app.technologies.map((tech) => (
+                <span key={tech} className={styles.techItem}>
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right Column: Authentic Visual Showcase */}
-          <div className={styles.mediaColumn}>
-            <div className={styles.deviceStage}>
-              {/* Primary Screenshot Frame */}
-              <div className={styles.primaryFrame}>
-                <div className={styles.frameHeader}>
-                  <span className={styles.frameDot} aria-hidden="true" />
-                  <span className={styles.frameLabel}>Workflow Interface</span>
-                </div>
-                <div className={styles.imageBox}>
-                  {app.image && (
+          {/* Right: Authentic Screenshot Composition */}
+          <div className={styles.mediaCol}>
+            <div className={styles.screenshotStage}>
+              {/* Primary Screenshot — Tall Mobile Frame */}
+              {app.image && (
+                <div className={styles.primaryShot}>
+                  <div className={styles.shotHeader}>
+                    <span className={styles.shotDot} aria-hidden="true" />
+                    <span className={styles.shotLabel}>DANDAZA+ // DASHBOARD</span>
+                  </div>
+                  <div className={styles.shotImageWrap}>
                     <Image
                       src={app.image}
-                      alt="Dandaza+ mobile application interface showing primary navigation and utilities"
-                      fill
+                      alt="Dandaza+ mobile application primary interface"
+                      width={720}
+                      height={1600}
                       priority
-                      sizes="(max-width: 639px) 280px, (max-width: 1023px) 300px, 320px"
-                      className={styles.screenImage}
+                      className={styles.shotImage}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 340px"
                     />
-                  )}
-                </div>
-              </div>
-
-              {/* Secondary Screenshot Frame */}
-              {app.secondaryImage && (
-                <div className={styles.secondaryFrame}>
-                  <div className={styles.frameHeader}>
-                    <span className={styles.frameDot} aria-hidden="true" />
-                    <span className={styles.frameLabel}>Report & Records</span>
                   </div>
-                  <div className={styles.imageBox}>
+                </div>
+              )}
+
+              {/* Secondary Screenshot — Overlapping */}
+              {app.secondaryImage && (
+                <div className={styles.secondaryShot}>
+                  <div className={styles.shotHeader}>
+                    <span className={styles.shotDot} aria-hidden="true" />
+                    <span className={styles.shotLabel}>REPORTS</span>
+                  </div>
+                  <div className={styles.shotImageWrap}>
                     <Image
                       src={app.secondaryImage}
-                      alt="Dandaza+ structured report and record management screen"
-                      fill
-                      sizes="(max-width: 639px) 220px, (max-width: 1023px) 250px, 260px"
-                      className={styles.screenImage}
+                      alt="Dandaza+ structured report and records screen"
+                      width={720}
+                      height={1600}
+                      className={styles.shotImage}
+                      sizes="(max-width: 768px) 100vw, 220px"
                     />
                   </div>
                 </div>
               )}
             </div>
-
-            <p className={styles.mediaCaption}>
-              Authentic mobile UI screenshots from Dandaza+
-            </p>
           </div>
         </div>
       </Container>

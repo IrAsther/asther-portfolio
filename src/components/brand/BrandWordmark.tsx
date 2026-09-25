@@ -1,18 +1,12 @@
 /**
- * BrandWordmark — "ASTHER"
- *
- * Pure text-based brand mark. No SVG, no images.
- * Uses Space Grotesk loaded via next/font/google for geometric precision.
- * Renders correctly in both Header (sm) and Hero (lg) contexts.
+ * BrandWordmark — Renders the provided brand logo PNG
  */
-import { spaceGrotesk } from "@/lib/fonts";
-import styles from "./BrandWordmark.module.css";
+import Image from "next/image";
 
 export type WordmarkSize = "header" | "hero";
 
 interface BrandWordmarkProps {
   size?: WordmarkSize;
-  /** Override the root element — defaults to <span> */
   as?: React.ElementType;
   className?: string;
 }
@@ -22,28 +16,18 @@ export function BrandWordmark({
   as: Component = "span",
   className = "",
 }: BrandWordmarkProps) {
-  const rootClass = [
-    styles.wordmark,
-    styles[size],
-    spaceGrotesk.className,
-    className,
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const dim = size === "hero" ? 160 : 80;
 
   return (
-    /*
-     * Screen readers see "ASTHER" as one word.
-     * aria-label on the parent Link/button already provides context,
-     * so we use aria-hidden on internal spans to avoid redundant announcements.
-     */
-    <Component className={rootClass} aria-hidden="true">
-      {/* Letters A S T H E are in the primary color */}
-      <span className={styles.letters}>ASTHE</span>
-      {/* Final "R" carries the accent — creates a subtle focal point */}
-      <span className={styles.accentLetter}>R</span>
-      {/* Thin accent mark — purely decorative */}
-      <span className={styles.accentMark} />
+    <Component className={className}>
+      <Image
+        src="/Asther_logo.png"
+        alt="Asther Logo"
+        width={dim}
+        height={dim}
+        priority
+        style={{ objectFit: "contain", height: "auto" }}
+      />
     </Component>
   );
 }

@@ -21,11 +21,44 @@
   gap: var(--space-1);
 }
 
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.brandLink:hover {
+  opacity: 0.9;
+}
+
+.footerLogo {
+  width: auto;
+  height: 48px; /* Mobile rule: 48px */
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .footerLogo {
+    height: 56px; /* Tablet rule: 56px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerLogo {
+    height: 64px; /* Desktop rule: 64px */
+  }
+}
+
 .brandName {
+  font-family: var(--font-family-display);
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--color-text);
-  letter-spacing: var(--letter-spacing-wide);
 }
 
 .title {

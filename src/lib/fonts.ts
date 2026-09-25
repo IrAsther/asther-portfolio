@@ -5,15 +5,21 @@
  * Import from here — never instantiate next/font inside components
  * because each call creates a separate font request.
  *
- * spaceGrotesk — used exclusively for the BrandWordmark.
- * Geometric, clean, highly legible at all weights.
- * ExtraBold (800) gives the premium tech-brand presence required.
+ * Archivo Black — 400 only (Display, major headings, wordmark)
+ * Inter — 400, 500, 600, 700 (Body, UI, controls, navigation)
  */
-import { Space_Grotesk } from "next/font/google";
+import { Archivo_Black, Inter } from "next/font/google";
 
-export const spaceGrotesk = Space_Grotesk({
+export const archivoBlack = Archivo_Black({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],   // Space Grotesk max is 700; use 700 for the wordmark
+  weight: "400",
   display: "swap",
-  variable: "--font-space-grotesk",
+  variable: "--font-archivo-black",
+});
+
+export const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
 });

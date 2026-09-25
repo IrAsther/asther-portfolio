@@ -1,0 +1,15 @@
+/* ============================================================
+   Projects Page Wrapper — Seamless Background System
+   ============================================================ */
+
+.pageWrapper {
+  position: relative;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  overflow-x: clip; /* Clip background bleed without breaking sticky/anchors */
+}
+
+.pageContent {
+  position: relative;
+  z-index: 1;
+}

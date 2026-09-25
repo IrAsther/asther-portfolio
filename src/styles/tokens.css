@@ -37,8 +37,12 @@
   --color-backdrop: rgba(2, 51, 65, 0.6);
 
   /* --- Typography --- */
-  --font-family-sans: var(--font-geist-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
-  --font-family-mono: var(--font-geist-mono, "SF Mono", Monaco, Inconsolata, "Fira Code", monospace);
+  /* Display / Major Headings: Archivo Black (400 only) */
+  --font-family-display: var(--font-archivo-black, "Archivo Black", sans-serif);
+  --font-family-heading: var(--font-archivo-black, "Archivo Black", sans-serif);
+  /* Body / UI: Inter */
+  --font-family-sans: var(--font-inter, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  --font-family-mono: "SF Mono", Monaco, Inconsolata, "Fira Code", monospace;
 
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
@@ -54,16 +58,19 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 700;
 
-  --line-height-tight: 1.2;
-  --line-height-snug: 1.375;
+  --line-height-tight: 1;
+  --line-height-snug: 1.25;
   --line-height-normal: 1.5;
-  --line-height-relaxed: 1.625;
+  --line-height-relaxed: 1.7;
 
-  --letter-spacing-tight: -0.02em;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-display: 0.02em;
   --letter-spacing-normal: 0em;
-  --letter-spacing-wide: 0.05em;
-  --letter-spacing-wider: 0.1em;
+  --letter-spacing-wide: 0.04em;
+  --letter-spacing-wider: 0.08em;
+  --letter-spacing-widest: 0.16em;
 
   /* --- Spacing Scale (4px base) --- */
   --space-1: 0.25rem;   /* 4px */
@@ -88,7 +95,7 @@
   */
   --container-max-width: 1200px;
   --container-padding: var(--space-4);
-  --header-height: 4.5rem; /* 72px */
+  --header-height: clamp(5.25rem, 8vw, 6.25rem); /* 84px mobile to 100px desktop */
 
   /* --- Border Radius --- */
   --radius-xs: 2px;

@@ -6,35 +6,36 @@ export function AppsHero() {
     <section className={styles.hero} aria-labelledby="apps-hero-heading">
       <Container>
         <div className={styles.inner}>
-          <div className={styles.badgeRow}>
-            <span className={styles.badge}>Applications & Digital Products</span>
-            <span className={styles.badgeMeta}>EdTech • AI Utilities • Practical Tools</span>
+          {/* Eyebrow */}
+          <div className={styles.eyebrowRow}>
+            <span className={styles.accentBar} aria-hidden="true" />
+            <span className={styles.eyebrow}>Applications</span>
           </div>
 
+          {/* Heading */}
           <h1 id="apps-hero-heading" className={styles.title}>
             Apps I Build
           </h1>
 
+          {/* Short description */}
           <p className={styles.lead}>
-            A dedicated collection of functional software applications, interactive platforms,
-            and digital tools. Each build addresses genuine operational or learning challenges
-            by combining solid engineering, thoughtful user experience, and modern technology.
+            Functional software built to solve real problems — from mobile daily utilities
+            to intelligent study platforms.
           </p>
 
-          <div className={styles.metricGrid}>
-            <div className={styles.metricItem}>
-              <span className={styles.metricValue}>01</span>
-              <span className={styles.metricLabel}>Live Utility Showcase</span>
+          {/* Thin architectural rule */}
+          <div className={styles.baseRule} aria-hidden="true" />
+
+          {/* Status bar */}
+          <div className={styles.statusBar}>
+            <div className={styles.statusItem}>
+              <span className={styles.statusDot} aria-hidden="true" />
+              <span className={styles.statusText}>1 Live Showcase</span>
             </div>
-            <div className={styles.divider} aria-hidden="true" />
-            <div className={styles.metricItem}>
-              <span className={styles.metricValue}>02</span>
-              <span className={styles.metricLabel}>EdTech Platforms in Build</span>
-            </div>
-            <div className={styles.divider} aria-hidden="true" />
-            <div className={styles.metricItem}>
-              <span className={styles.metricValue}>100%</span>
-              <span className={styles.metricLabel}>Authentic & Factual</span>
+            <div className={styles.statusSep} aria-hidden="true" />
+            <div className={styles.statusItem}>
+              <span className={styles.statusDotDev} aria-hidden="true" />
+              <span className={styles.statusText}>2 In Development</span>
             </div>
           </div>
         </div>

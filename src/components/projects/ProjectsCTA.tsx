@@ -7,19 +7,24 @@ export function ProjectsCTA() {
     <section className={styles.section} aria-labelledby="projects-cta-heading">
       <Container>
         <div className={styles.card}>
-          <div className={styles.accentBorder} aria-hidden="true" />
           <div className={styles.content}>
-            <span className={styles.badge}>Next Steps</span>
             <h2 id="projects-cta-heading" className={styles.heading}>
-              Have a problem or project to build?
+              Let&apos;s talk about building something.
             </h2>
             <p className={styles.description}>
-              Whether you are interested in discussing software utility architecture, exploring
-              applied AI/ML workflows, or reviewing code and interface design, let&apos;s connect.
+              Whether you have a practical problem that needs software, or you just want to talk
+              about data pipelines and frontend architecture, I&apos;m always open to a
+              conversation.
             </p>
             <div className={styles.actions}>
-              <Button href="/contact" variant="primary" size="lg" id="projects-cta-contact">
-                Start a Conversation
+              <Button
+                href="/contact"
+                variant="primary"
+                size="lg"
+                id="projects-cta-contact"
+                className={styles.ctaBtn}
+              >
+                Get in touch
               </Button>
               <Button
                 href="/about"
@@ -28,7 +33,7 @@ export function ProjectsCTA() {
                 id="projects-cta-about"
                 className={styles.aboutBtn}
               >
-                About My Background
+                More about me
               </Button>
             </div>
           </div>

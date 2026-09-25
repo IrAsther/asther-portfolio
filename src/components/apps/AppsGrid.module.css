@@ -1,79 +1,75 @@
 /* ============================================================
-   AppsGrid — Grid layout for additional application entries
-   Asther Irakaza Portfolio
+   AppsGrid.module.css
+   Clean 2-column grid for additional application entries
    ============================================================ */
 
 .section {
-  padding-block: var(--space-20);
-  background-color: var(--color-bg);
+  position: relative;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  background-color: transparent;
 }
 
-.header {
-  max-width: 680px;
+/* ────────────────────────────────────────────────────────────
+   Section Header Strip
+   ──────────────────────────────────────────────────────────── */
+.sectionHeader {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2-5);
-  margin-bottom: var(--space-12);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
-.headerTag {
+.labelGroup {
   display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+  align-items: baseline;
+  gap: 0.875rem;
 }
 
-.sectionIndex {
+.indexNumber {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
   color: var(--color-accent);
-}
-
-.sectionTagline {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
   letter-spacing: var(--letter-spacing-wider);
-  text-transform: uppercase;
-  color: var(--color-text-subtle);
 }
 
-.heading {
-  font-family: var(--font-family-sans);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
+.verticalDivider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: var(--color-border);
+  align-self: center;
+}
+
+.sectionLabel {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1;
   color: var(--color-text);
   margin: 0;
 }
 
-.subheading {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-muted);
-  margin: 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8);
+.metaLabel {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--color-text-subtle);
 }
 
 /* ────────────────────────────────────────────────────────────
-   Responsive
+   Grid
    ──────────────────────────────────────────────────────────── */
-
-@media (max-width: 1023px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-@media (max-width: 639px) {
-  .section {
-    padding-block: var(--space-12);
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 }

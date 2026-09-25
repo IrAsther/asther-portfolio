@@ -1,132 +1,129 @@
 /* ============================================================
-   TechnologyDirection — Application Stack & Direction
-   Asther Irakaza Portfolio
+   TechnologyDirection.module.css
+   Stack section — table-style row layout
+   Typography-first · No rounded pills · Minimal decoration
    ============================================================ */
 
 .section {
-  padding-block: var(--space-20);
-  background-color: var(--color-bg);
+  position: relative;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+  background-color: transparent;
 }
 
-.header {
-  max-width: 680px;
+/* ────────────────────────────────────────────────────────────
+   Section Header Strip
+   ──────────────────────────────────────────────────────────── */
+.sectionHeader {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2-5);
-  margin-bottom: var(--space-12);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.headerTag {
+.labelGroup {
   display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+  align-items: baseline;
+  gap: 0.875rem;
 }
 
-.sectionIndex {
+.indexNumber {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
   color: var(--color-accent);
+  letter-spacing: var(--letter-spacing-wider);
 }
 
-.sectionTagline {
+.verticalDivider {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: var(--color-border);
+  align-self: center;
+}
+
+.sectionLabel {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.metaLabel {
   font-family: var(--font-family-mono);
   font-size: var(--font-size-xs);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
   color: var(--color-text-subtle);
 }
 
-.heading {
-  font-family: var(--font-family-sans);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-text);
-  margin: 0;
+/* ────────────────────────────────────────────────────────────
+   Group Row: Table-Style Layout
+   ──────────────────────────────────────────────────────────── */
+.groupList {
+  display: flex;
+  flex-direction: column;
 }
 
-.subheading {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  color: var(--color-text-muted);
-  margin: 0;
-}
-
-.grid {
+.groupRow {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding: 1.375rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.groupCard {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  transition: border-color var(--transition-fast);
+.groupRow:last-child {
+  border-bottom: none;
 }
 
-.groupCard:hover {
-  border-color: var(--color-border-hover, var(--color-accent));
-}
-
-.groupHeader {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
+.groupNameCol {
+  padding-top: 0.125rem;
 }
 
 .groupName {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-snug);
+  font-family: var(--font-family-display);
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  line-height: 1.2;
   color: var(--color-text);
   margin: 0;
 }
 
-.groupDescription {
+.techCol {
+  padding-top: 0.25rem;
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1.8;
+}
+
+.techItem {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
-  margin: 0;
 }
 
-.techPills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.techPill {
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border-subtle);
+.techSep {
+  color: var(--color-border-hover);
 }
 
 /* ────────────────────────────────────────────────────────────
    Responsive
    ──────────────────────────────────────────────────────────── */
-
-@media (max-width: 1023px) {
-  .grid {
+@media (max-width: 768px) {
+  .groupRow {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: 0.75rem;
+    padding: 1.25rem 0;
   }
-}
 
-@media (max-width: 639px) {
-  .section {
-    padding-block: var(--space-12);
+  .groupName {
+    font-size: 0.9375rem;
   }
 }

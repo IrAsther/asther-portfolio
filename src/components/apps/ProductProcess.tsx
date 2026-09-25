@@ -6,29 +6,28 @@ export function ProductProcess() {
   return (
     <section className={styles.section} aria-labelledby="product-process-heading">
       <Container>
-        <div className={styles.header}>
-          <div className={styles.headerTag}>
-            <span className={styles.sectionIndex}>03</span>
-            <span className={styles.sectionTagline}>Engineering Philosophy</span>
+        {/* Section Header Strip */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.labelGroup}>
+            <span className={styles.indexNumber}>03</span>
+            <div className={styles.verticalDivider} aria-hidden="true" />
+            <h2 id="product-process-heading" className={styles.sectionLabel}>
+              How I build
+            </h2>
           </div>
-          <h2 id="product-process-heading" className={styles.heading}>
-            From Problem to Product
-          </h2>
-          <p className={styles.subheading}>
-            How I approach building software applications—prioritizing genuine utility,
-            disciplined architectural choices, and human-centered problem solving.
-          </p>
+          <span className={styles.metaLabel}>ENGINEERING</span>
         </div>
 
-        <div className={styles.timeline}>
+        {/* 4-column horizontal process */}
+        <div className={styles.stepsGrid}>
           {productProcess.map((stage) => (
-            <div key={stage.step} className={styles.stageCard}>
-              <div className={styles.stageTop}>
+            <div key={stage.step} className={styles.step}>
+              <div className={styles.stepTop}>
                 <span className={styles.stepNumber}>{stage.step}</span>
-                <span className={styles.stepTitle}>{stage.title}</span>
+                <span className={styles.stepDash} aria-hidden="true">—</span>
+                <h3 className={styles.stepTitle}>{stage.title}</h3>
               </div>
-              <h3 className={styles.stageSummary}>{stage.summary}</h3>
-              <p className={styles.stageDescription}>{stage.description}</p>
+              <p className={styles.stepSummary}>{stage.summary}</p>
             </div>
           ))}
         </div>

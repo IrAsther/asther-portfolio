@@ -1,34 +1,32 @@
 import type { Metadata } from "next";
-import { designWorks } from "@/data/design";
+import { DesignBackground } from "@/components/design/DesignBackground";
 import { DesignHero } from "@/components/design/DesignHero";
-import { DesignIntro } from "@/components/design/DesignIntro";
-import { FeaturedDesign } from "@/components/design/FeaturedDesign";
-import { DesignGallery } from "@/components/design/DesignGallery";
-import { DesignPrinciples } from "@/components/design/DesignPrinciples";
-import { DesignTechnology } from "@/components/design/DesignTechnology";
-import { DesignTools } from "@/components/design/DesignTools";
+import { DesignWorks } from "@/components/design/DesignWorks";
+import { DesignProcess } from "@/components/design/DesignProcess";
+import { DesignSystemGlimpse } from "@/components/design/DesignSystemGlimpse";
 import { DesignCTA } from "@/components/design/DesignCTA";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Design — Asther Irakaza",
   description:
-    "Graphic design and visual communication portfolio of Asther Irakaza. Digital product UI design, structured editorial documentation, and brand identity systems.",
+    "Design portfolio of Asther Irakaza. Visual systems, digital product interfaces, and editorial experiences designed with clarity and purpose.",
 };
 
 export default function DesignPage() {
-  const featuredWork =
-    designWorks.find((w) => w.featured) || designWorks[0];
-
   return (
-    <>
-      <DesignHero />
-      <DesignIntro />
-      <FeaturedDesign work={featuredWork} />
-      <DesignGallery />
-      <DesignPrinciples />
-      <DesignTechnology />
-      <DesignTools />
-      <DesignCTA />
-    </>
+    <div className={styles.pageWrapper}>
+      {/* Authentic Asther Logo Architectural Background */}
+      <DesignBackground />
+
+      {/* Main Page Flow */}
+      <main className={styles.pageContent}>
+        <DesignHero />
+        <DesignWorks />
+        <DesignProcess />
+        <DesignSystemGlimpse />
+        <DesignCTA />
+      </main>
+    </div>
   );
 }

@@ -6,33 +6,36 @@ export function TechnologyDirection() {
   return (
     <section className={styles.section} aria-labelledby="tech-direction-heading">
       <Container>
-        <div className={styles.header}>
-          <div className={styles.headerTag}>
-            <span className={styles.sectionIndex}>04</span>
-            <span className={styles.sectionTagline}>Technical Ecosystem</span>
+        {/* Section Header Strip */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.labelGroup}>
+            <span className={styles.indexNumber}>04</span>
+            <div className={styles.verticalDivider} aria-hidden="true" />
+            <h2 id="tech-direction-heading" className={styles.sectionLabel}>
+              Stack
+            </h2>
           </div>
-          <h2 id="tech-direction-heading" className={styles.heading}>
-            Application Stack & Technical Direction
-          </h2>
-          <p className={styles.subheading}>
-            Technologies and tooling applied across frontend architectures, database design,
-            and intelligent assistants.
-          </p>
+          <span className={styles.metaLabel}>TECHNOLOGY</span>
         </div>
 
-        <div className={styles.grid}>
+        {/* Clean table-style tech groups */}
+        <div className={styles.groupList}>
           {applicationTechGroups.map((group) => (
-            <div key={group.name} className={styles.groupCard}>
-              <div className={styles.groupHeader}>
+            <div key={group.name} className={styles.groupRow}>
+              <div className={styles.groupNameCol}>
                 <h3 className={styles.groupName}>{group.name}</h3>
-                <p className={styles.groupDescription}>{group.description}</p>
               </div>
-              <div className={styles.techPills} aria-label={`${group.name} technologies`}>
-                {group.technologies.map((tech) => (
-                  <span key={tech} className={styles.techPill}>
-                    {tech}
-                  </span>
-                ))}
+              <div className={styles.techCol}>
+                <div className={styles.techList} aria-label={`${group.name} technologies`}>
+                  {group.technologies.map((tech, i) => (
+                    <span key={tech} className={styles.techItem}>
+                      {tech}
+                      {i < group.technologies.length - 1 && (
+                        <span className={styles.techSep} aria-hidden="true"> · </span>
+                      )}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

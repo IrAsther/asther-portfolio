@@ -11,18 +11,16 @@ export function AppsGrid({ apps }: AppsGridProps) {
   return (
     <section className={styles.section} aria-labelledby="apps-grid-heading">
       <Container>
-        <div className={styles.header}>
-          <div className={styles.headerTag}>
-            <span className={styles.sectionIndex}>02</span>
-            <span className={styles.sectionTagline}>Active Builds</span>
+        {/* Section Header Strip */}
+        <div className={styles.sectionHeader}>
+          <div className={styles.labelGroup}>
+            <span className={styles.indexNumber}>02</span>
+            <div className={styles.verticalDivider} aria-hidden="true" />
+            <h2 id="apps-grid-heading" className={styles.sectionLabel}>
+              Also building
+            </h2>
           </div>
-          <h2 id="apps-grid-heading" className={styles.heading}>
-            More Applications & Product Work
-          </h2>
-          <p className={styles.subheading}>
-            Active platforms and education-technology systems currently in design,
-            data schema modeling, and structured development.
-          </p>
+          <span className={styles.metaLabel}>IN DEVELOPMENT</span>
         </div>
 
         <div className={styles.grid}>

@@ -1,78 +1,97 @@
+"use client";
+
 import Image from "next/image";
-import { ProjectStatusBadge } from "./ProjectStatus";
+import { ArrowRight } from "lucide-react";
 import type { Project } from "@/data/projects";
 import styles from "./ProjectCard.module.css";
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
+  layout?: "spotlight" | "diagram" | "horizontal";
+  onSelect?: (project: Project) => void;
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
-  const indexStr = String(index + 1).padStart(2, "0");
+export function ProjectCard({
+  project,
+  layout = "diagram",
+  onSelect,
+}: ProjectCardProps) {
+  const handleClick = () => {
+    onSelect?.(project);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect?.(project);
+    }
+  };
+
+  const cardClass =
+    layout === "spotlight"
+      ? styles.cardSpotlight
+      : layout === "horizontal"
+      ? styles.cardHorizontal
+      : styles.cardDiagram;
 
   return (
     <article
-      className={`${styles.card} ${project.isPlaceholder ? styles.cardArchitecture : ""}`}
-      aria-labelledby={`project-title-${project.id}`}
+      className={`${styles.card} ${cardClass}`}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open details for ${project.title}`}
     >
-      {/* Visual media preview — authentic image OR blueprint architecture pattern */}
-      {project.image ? (
-        <div className={styles.mediaContainer}>
+      {/* Visual Area */}
+      <div className={styles.mediaArea}>
+        {project.image ? (
           <div className={styles.imageWrapper}>
             <Image
               src={project.image}
-              alt={`${project.title} interface preview`}
+              alt={`${project.title} interface`}
               fill
-              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 420px"
+              sizes="(max-width: 768px) 100vw, 400px"
               className={styles.projectImage}
             />
           </div>
-        </div>
-      ) : (
-        <div className={styles.blueprintContainer} aria-hidden="true">
-          <div className={styles.blueprintLines} />
-          <div className={styles.blueprintOverlay}>
-            <span className={styles.blueprintIndex}>ARCH-{indexStr}</span>
-            <span className={styles.blueprintBadge}>System Specification</span>
+        ) : layout === "diagram" ? (
+          <div className={styles.conceptDiagram} aria-hidden="true">
+            <div className={styles.conceptStep}>Ingest</div>
+            <div className={`${styles.conceptStep} ${styles.conceptStepHighlight}`}>
+              Pipeline
+            </div>
+            <div className={styles.conceptStep}>Inference</div>
           </div>
-        </div>
-      )}
-
-      {/* Card Header: Category & Status */}
-      <div className={styles.cardHeader}>
-        <span className={styles.category}>{project.category}</span>
-        <ProjectStatusBadge
-          status={project.status}
-          statusType={project.statusType || (project.isPlaceholder ? "architecture" : "showcase")}
-          size="sm"
-        />
-      </div>
-
-      {/* Card Body */}
-      <div className={styles.cardBody}>
-        <h3 id={`project-title-${project.id}`} className={styles.title}>
-          {project.title}
-        </h3>
-
-        <p className={styles.summary}>{project.summary}</p>
-
-        {project.problem && (
-          <div className={styles.problemBox}>
-            <span className={styles.problemLabel}>Scope & Intent</span>
-            <p className={styles.problemText}>{project.problem}</p>
+        ) : (
+          <div className={styles.wireframeBox} aria-hidden="true">
+            <div className={styles.wireframeBar} />
+            <div className={styles.wireframeRow}>
+              <div className={styles.wireframeCell} />
+              <div className={styles.wireframeCell} />
+            </div>
           </div>
         )}
       </div>
 
-      {/* Card Footer: Tech tags & architectural note */}
-      <div className={styles.cardFooter}>
-        <div className={styles.tags} aria-label="Technologies involved">
-          {project.technologies.map((tech) => (
-            <span key={tech} className={styles.techTag}>
-              {tech}
-            </span>
-          ))}
+      {/* Info Area */}
+      <div className={styles.infoArea}>
+        <div className={styles.statusLine}>
+          <span className={styles.statusDot} aria-hidden="true" />
+          <span>{project.status}</span>
+        </div>
+
+        <h3 className={styles.title}>{project.title}</h3>
+
+        <p className={styles.summary}>{project.summary}</p>
+
+        <div className={styles.techLine}>
+          {project.technologies.join("  ·  ")}
+        </div>
+
+        <div className={styles.actionLink} aria-hidden="true">
+          <span>{layout === "spotlight" ? "Read project overview" : "View architecture"}</span>
+          <ArrowRight size={15} />
         </div>
       </div>
     </article>

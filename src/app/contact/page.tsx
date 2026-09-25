@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactSection } from "@/components/contact/ContactSection";
+import { ContactBackground } from "@/components/contact/ContactBackground";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Contact — Asther Irakaza",
@@ -10,9 +12,12 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <>
-      <ContactHero />
-      <ContactSection />
-    </>
+    <div className={styles.pageWrapper}>
+      <ContactBackground />
+      <div className={styles.pageContent}>
+        <ContactHero />
+        <ContactSection />
+      </div>
+    </div>
   );
 }

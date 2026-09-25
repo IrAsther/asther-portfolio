@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { featuredProjects } from "@/data/projects";
 import { ProjectsHero } from "@/components/projects/ProjectsHero";
-import { FeaturedProject } from "@/components/projects/FeaturedProject";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { ProjectsCTA } from "@/components/projects/ProjectsCTA";
+import { ProjectsBackground } from "@/components/projects/ProjectsBackground";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Projects — Asther Irakaza",
@@ -12,18 +13,14 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const dandaza =
-    featuredProjects.find((p) => p.id === "dandaza-plus") || featuredProjects[0];
-  const architectureProjects = featuredProjects.filter(
-    (p) => p.id !== "dandaza-plus"
-  );
-
   return (
-    <>
-      <ProjectsHero />
-      <FeaturedProject project={dandaza} />
-      <ProjectGrid projects={architectureProjects} />
-      <ProjectsCTA />
-    </>
+    <div className={styles.pageWrapper}>
+      <ProjectsBackground />
+      <div className={styles.pageContent}>
+        <ProjectsHero />
+        <ProjectGrid projects={featuredProjects} />
+        <ProjectsCTA />
+      </div>
+    </div>
   );
 }

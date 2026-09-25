@@ -1,11 +1,11 @@
 /* ============================================================
-   ProjectsCTA — Page-end CTA card for /projects
-   Visual consistency with AboutCTA & HomepageFinalCTA
+   ProjectsCTA — Clean, Architectural Page-End Call to Action
+   Zero rounded UI · Sharp geometry · Restrained
    ============================================================ */
 
 .section {
   padding-block: var(--space-20);
-  background-color: var(--color-bg-alt);
+  background-color: transparent;
   border-top: 1px solid var(--color-border-subtle);
 }
 
@@ -13,49 +13,26 @@
   position: relative;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: var(--space-16) var(--space-12);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-
-.accentBorder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), transparent 80%);
 }
 
 .content {
-  max-width: 680px;
+  max-width: 640px;
   margin-inline: auto;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-5);
-}
-
-.badge {
-  display: inline-flex;
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--letter-spacing-wider);
-  text-transform: uppercase;
-  color: var(--color-accent);
-  background-color: var(--color-accent-subtle);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
+  gap: var(--space-4);
 }
 
 .heading {
-  font-family: var(--font-family-sans);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.1;
   letter-spacing: var(--letter-spacing-tight);
   color: var(--color-text);
   margin: 0;
@@ -63,8 +40,9 @@
 
 .description {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  max-width: 58ch;
   color: var(--color-text-muted);
   margin: 0;
 }
@@ -75,6 +53,11 @@
   justify-content: center;
   gap: var(--space-4);
   margin-top: var(--space-4);
+}
+
+.ctaBtn,
+.aboutBtn {
+  border-radius: 0 !important;
 }
 
 .aboutBtn {
@@ -91,10 +74,9 @@
 /* ────────────────────────────────────────────────────────────
    Responsive
    ──────────────────────────────────────────────────────────── */
-
 @media (max-width: 767px) {
   .section {
-    padding-block: var(--space-12);
+    padding-block: var(--space-14);
   }
 
   .card {
@@ -105,12 +87,16 @@
     flex-direction: column;
     width: 100%;
   }
+
+  .ctaBtn,
+  .aboutBtn {
+    width: 100%;
+  }
 }
 
 /* ────────────────────────────────────────────────────────────
-   Dark Theme Overrides
+   Dark Theme
    ──────────────────────────────────────────────────────────── */
-
 [data-theme="dark"] .aboutBtn {
   border-color: var(--color-border);
   color: var(--color-text);

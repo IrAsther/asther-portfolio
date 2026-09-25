@@ -41,11 +41,11 @@
 }
 
 .name {
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-display);
   font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  letter-spacing: var(--letter-spacing-tight);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
   color: var(--color-text);
   margin: 0;
   opacity: 0;
@@ -65,7 +65,7 @@
 .rolePrimary {
   font-family: var(--font-family-sans);
   font-size: clamp(var(--font-size-base), 1.6vw, var(--font-size-xl));
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
   color: var(--color-accent);
   letter-spacing: var(--letter-spacing-tight);
 }
@@ -80,7 +80,7 @@
 .roleSecondary {
   font-family: var(--font-family-sans);
   font-size: clamp(var(--font-size-sm), 1.4vw, var(--font-size-base));
-  font-weight: var(--font-weight-medium);
+  font-weight: 500;
   color: var(--color-text-subtle);
   letter-spacing: var(--letter-spacing-normal);
 }
@@ -89,9 +89,9 @@
 .intro {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
+  line-height: 1.7;
+  max-width: 65ch;
   color: var(--color-text-muted);
-  max-width: 520px;
   margin: var(--space-2) 0 0;
   opacity: 0;
   animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
@@ -124,44 +124,166 @@
 .portraitCol {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   opacity: 0;
   animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
-.portraitStage {
+/* ── Stage: outer sizing container ── */
+.apStage {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
   max-width: 400px;
 }
 
-.accentLine {
+/* ── Layer 0: technical grid ── */
+.apGrid {
   position: absolute;
-  bottom: 0;
-  right: 12%;
-  width: 2px;
-  height: 60%;
-  background-color: var(--color-accent);
-  opacity: 0.28;
-  border-radius: var(--radius-full);
+  inset: -16px;
+  background-image:
+    linear-gradient(rgba(253, 94, 2, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 94, 2, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] .apGrid {
+  background-image:
+    linear-gradient(rgba(253, 94, 2, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 94, 2, 0.09) 1px, transparent 1px);
+}
+
+/* ── Layer 0b: orange halo ── */
+.apHalo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 60% at 50% 60%,
+    rgba(253, 94, 2, 0.11) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Layer 1: ghost portrait (depth) ── */
+.apGhost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  will-change: transform;
   pointer-events: none;
 }
 
-.portraitFigure {
+.apGhostImage {
+  width: 92%;
+  height: auto;
+  object-fit: contain;
+  filter: blur(14px) brightness(0.28);
+  transform: scale(1.05) translateY(8px);
+  opacity: 0.10;
+}
+
+[data-theme="dark"] .apGhostImage {
+  filter: blur(16px) brightness(0.20);
+  opacity: 0.10;
+}
+
+/* ── Layer 2: framed portrait with polygon clip ── */
+.apFrame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  will-change: transform;
+  animation: apFloat 7s ease-in-out infinite;
+}
+
+/* Corner bracket — top right */
+.apCornerTR {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  border-top: 2px solid var(--color-accent);
+  border-right: 2px solid var(--color-accent);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Corner bracket — bottom left */
+.apCornerBL {
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  width: 22px;
+  height: 22px;
+  border-bottom: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-accent);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Polygon clip */
+.apClip {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 78%,
+    84% 100%,
+    0 100%
+  );
+}
+
+.apFigure {
   display: block;
   width: 100%;
   height: auto;
-  max-width: 400px;
   object-fit: contain;
-  filter: drop-shadow(0 14px 28px rgba(2, 51, 65, 0.08));
-  transition: transform var(--transition-slow);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 2;
 }
 
-.portraitStage:hover .portraitFigure {
-  transform: translateY(-4px);
+/* ── Layer 3: 2 accent lines ── */
+.apAccents {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.apAccentH1 {
+  position: absolute;
+  top: 18%;
+  right: -20px;
+  width: 34px;
+  height: 2px;
+  background-color: var(--color-accent);
+  opacity: 0.65;
+  animation: apAccentPulse 4s ease-in-out infinite;
+}
+
+.apAccentH2 {
+  position: absolute;
+  bottom: 22%;
+  left: -18px;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent);
+  opacity: 0.4;
+  animation: apAccentPulse 5.5s ease-in-out 1.5s infinite;
 }
 
 /* ─── Bottom fade ─── */
@@ -200,6 +322,16 @@
   }
 }
 
+@keyframes apFloat {
+  0%,  100% { transform: translateY(0px); }
+  50%        { transform: translateY(-9px); }
+}
+
+@keyframes apAccentPulse {
+  0%,  100% { opacity: 0.65; }
+  50%        { opacity: 0.20; }
+}
+
 /* ============================================================
    RESPONSIVE — Tablet (768px – 1023px)
    ============================================================ */
@@ -224,12 +356,19 @@
     order: 1;
   }
 
-  .portraitStage {
+  .apStage {
     max-width: 280px;
   }
 
-  .portraitFigure {
-    max-width: 280px;
+  /* Disable floating on tablet */
+  .apFrame {
+    animation: none;
+  }
+
+  .apCornerTR,
+  .apCornerBL {
+    width: 16px;
+    height: 16px;
   }
 
   .ctas {
@@ -253,13 +392,14 @@
     font-size: clamp(1.875rem, 8vw, 2.5rem);
   }
 
-  .portraitStage {
-    max-width: 200px;
+  .apStage {
+    max-width: 210px;
   }
 
-  .portraitFigure {
-    max-width: 200px;
-  }
+  /* Simplify on mobile */
+  .apGhost    { display: none; }
+  .apFrame    { animation: none; }
+  .apAccents  { display: none; }
 
   .ctas {
     flex-direction: column;
@@ -268,9 +408,6 @@
   }
 }
 
-/* ============================================================
-   DARK THEME OVERRIDES
-   ============================================================ */
 [data-theme="dark"] .ctaOutline {
   border-color: var(--color-border);
   color: var(--color-text);
@@ -282,6 +419,20 @@
   border-color: var(--color-border-hover);
 }
 
-[data-theme="dark"] .portraitFigure {
-  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.45));
+[data-theme="dark"] .apHalo {
+  background: radial-gradient(
+    ellipse 65% 60% at 50% 60%,
+    rgba(253, 94, 2, 0.16) 0%,
+    transparent 70%
+  );
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .portraitCol { animation: none; opacity: 1; }
+  .apFrame     { animation: none; }
+  .apAccentH1,
+  .apAccentH2  { animation: none; }
 }

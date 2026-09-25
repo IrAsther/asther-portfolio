@@ -1,0 +1,158 @@
+/* ============================================================
+   ContactBackground.module.css
+   Authentic brand logo background for Contact page
+   Architectural depth · Intentional cropping · Low opacity
+   ============================================================ */
+
+.backgroundRoot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  background-color: var(--color-bg);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Layer 2: Large Subtle Logo Graphic (Right-Anchored & Cropped)
+   ──────────────────────────────────────────────────────────── */
+.logoStage {
+  position: absolute;
+  top: 8%;
+  right: -160px;
+  width: clamp(680px, 60vw, 1150px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  animation: logoSubtleFloat 45s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes logoSubtleFloat {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.065;
+  }
+  50% {
+    transform: translate3d(-6px, 4px, 0);
+    opacity: 0.09;
+  }
+  100% {
+    transform: translate3d(-3px, -4px, 0);
+    opacity: 0.07;
+  }
+}
+
+.logoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.logoImage {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Layer 3: Subtle Architectural Grid Lines & Horizontal Datum
+   ──────────────────────────────────────────────────────────── */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, var(--color-border-subtle) 1px, transparent 1px);
+  background-size: clamp(140px, 15vw, 220px) 100%;
+  opacity: 0.07;
+  mask-image: radial-gradient(circle at 75% 40%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at 75% 40%, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+}
+
+.datumLine {
+  position: absolute;
+  top: 36%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--color-border-subtle);
+  opacity: 0.3;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Dark Theme Adjustments
+   ──────────────────────────────────────────────────────────── */
+[data-theme="dark"] .logoStage {
+  animation-name: logoSubtleFloatDark;
+}
+
+@keyframes logoSubtleFloatDark {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translate3d(-6px, 4px, 0);
+    opacity: 0.105;
+  }
+  100% {
+    transform: translate3d(-3px, -4px, 0);
+    opacity: 0.085;
+  }
+}
+
+[data-theme="dark"] .gridOverlay {
+  opacity: 0.05;
+}
+
+[data-theme="dark"] .datumLine {
+  opacity: 0.2;
+}
+
+/* ────────────────────────────────────────────────────────────
+   Responsive
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .logoStage {
+    top: 6%;
+    right: -120px;
+    width: clamp(520px, 58vw, 850px);
+  }
+}
+
+@media (max-width: 768px) {
+  .logoStage {
+    top: 14%;
+    right: -90px;
+    width: clamp(380px, 75vw, 540px);
+  }
+
+  .gridOverlay {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoStage {
+    top: 18%;
+    right: -70px;
+    width: 360px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   Reduced Motion
+   ──────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .logoStage {
+    animation: none !important;
+    transform: none !important;
+    opacity: 0.07;
+  }
+
+  [data-theme="dark"] .logoStage {
+    opacity: 0.085;
+  }
+}
