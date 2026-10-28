@@ -1,0 +1,387 @@
+.editorLayout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: var(--color-text);
+  margin: 0 0 4px 0;
+  font-weight: 400;
+}
+
+.pageSubtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.toastBanner {
+  padding: var(--space-3) var(--space-4);
+  background-color: rgba(1, 96, 90, 0.12);
+  border: 1px solid #01605A;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: #01605A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .toastBanner {
+  color: #FFD0A8;
+}
+
+.columnsGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.leftCol,
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Skills */
+.skillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.skillCategory {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.skillCategory:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.skillCategoryName {
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+  margin: 0 0 var(--space-3) 0;
+}
+
+.skillTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--space-3);
+}
+
+.skillTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background-color: rgba(1, 96, 90, 0.08);
+  border: 1px solid rgba(1, 96, 90, 0.2);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: var(--color-text);
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.removeBtn:hover {
+  color: #E53E3E;
+}
+
+.addSkillRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.skillInput {
+  flex: 1;
+  height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.skillInput:focus {
+  border-color: #FF862D;
+  box-shadow: 0 0 0 2px rgba(255, 134, 45, 0.2);
+}
+
+.addBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.addBtn:hover {
+  background-color: #01605A;
+  border-color: #01605A;
+  color: #fff;
+}
+
+/* Education */
+.educationList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.educationItem {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-bg);
+}
+
+/* Journey */
+.journeyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.journeyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.journeyNumberBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(1, 96, 90, 0.12);
+  border: 1px solid rgba(1, 96, 90, 0.3);
+  color: #01605A;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 22px;
+}
+
+.journeyFields {
+  flex: 1;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-bg);
+}
+
+.journeyTopRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+/* Shared form elements */
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: var(--space-2-5, 10px) var(--space-3);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #FF862D;
+  box-shadow: 0 0 0 2px rgba(255, 134, 45, 0.2);
+}
+
+.textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #01605A;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* Add step button */
+.addStepBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.addStepBtn:hover {
+  border-color: #01605A;
+  color: #01605A;
+}
+
+/* Remove step button */
+.removeStepBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-subtle);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  transition: color var(--transition-fast);
+}
+
+.removeStepBtn:hover {
+  color: #E53E3E;
+}
+
+/* Guide card */
+.guideCard {
+  padding: var(--space-4);
+  border: 1px solid rgba(1, 96, 90, 0.2);
+  border-radius: var(--radius-sm);
+  background-color: rgba(1, 96, 90, 0.04);
+}
+
+.guideHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.guideTitle {
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: #01605A;
+}
+
+.guideList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.guideList li {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.guideNote {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 1023px) {
+  .columnsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldRow,
+  .journeyTopRow {
+    grid-template-columns: 1fr;
+  }
+}

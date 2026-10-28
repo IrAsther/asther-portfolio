@@ -1,8 +1,12 @@
 import { Container } from "@/components/ui/Container";
-import { resumeSkillGroups } from "@/data/resume";
+import { resumeSkillGroups, type ResumeSkillGroup } from "@/data/resume";
 import styles from "./ResumeSkills.module.css";
 
-export function ResumeSkills() {
+export function ResumeSkills({
+  skillGroups = resumeSkillGroups,
+}: {
+  skillGroups?: ResumeSkillGroup[];
+} = {}) {
   return (
     <section className={styles.section} aria-labelledby="resume-skills-heading">
       <Container>
@@ -21,7 +25,7 @@ export function ResumeSkills() {
         </div>
 
         <div className={styles.grid}>
-          {resumeSkillGroups.map((group) => (
+          {skillGroups.map((group) => (
             <div key={group.category} className={styles.groupCard}>
               <h3 className={styles.groupTitle}>{group.category}</h3>
               <div className={styles.skillsList} aria-label={`${group.category} skills`}>

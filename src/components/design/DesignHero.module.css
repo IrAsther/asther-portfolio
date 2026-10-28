@@ -136,7 +136,7 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 0;
-  box-shadow: 0 16px 36px -12px rgba(2, 51, 65, 0.08);
+  box-shadow: 0 16px 36px -12px rgba(1, 96, 90, 0.08);
 }
 
 .frameHeader {
@@ -231,7 +231,7 @@
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 0;
-  box-shadow: 0 12px 28px -6px rgba(2, 51, 65, 0.14);
+  box-shadow: 0 12px 28px -6px rgba(1, 96, 90, 0.14);
   transition: transform 0.3s ease;
 }
 

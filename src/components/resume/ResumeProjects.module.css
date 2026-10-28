@@ -121,7 +121,7 @@
   text-transform: uppercase;
   color: var(--color-accent);
   background-color: var(--color-accent-subtle);
-  border: 1px solid rgba(253, 94, 2, 0.25);
+  border: 1px solid rgba(255, 134, 45, 0.25);
   white-space: nowrap;
 }
 

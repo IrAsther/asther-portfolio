@@ -315,17 +315,17 @@
 .statusActive {
   color: var(--color-accent);
   background-color: var(--color-accent-subtle);
-  border: 1px solid rgba(253, 94, 2, 0.25);
+  border: 1px solid rgba(255, 134, 45, 0.25);
 }
 
 .statusDraft {
   color: var(--color-text-subtle);
-  background-color: rgba(2, 51, 65, 0.05);
+  background-color: rgba(1, 96, 90, 0.05);
   border: 1px solid var(--color-border);
 }
 
 [data-theme="dark"] .statusDraft {
-  background-color: rgba(252, 245, 227, 0.05);
+  background-color: rgba(255, 208, 168, 0.08);
 }
 
 .cardBody {

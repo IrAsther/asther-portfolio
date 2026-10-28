@@ -1,8 +1,12 @@
 import { Container } from "@/components/ui/Container";
-import { journey } from "@/data/about";
+import { journey as defaultJourney, type JourneyMilestone } from "@/data/about";
 import styles from "./AboutTimeline.module.css";
 
-export function AboutTimeline() {
+export function AboutTimeline({
+  journey = defaultJourney,
+}: {
+  journey?: JourneyMilestone[];
+} = {}) {
   return (
     <section className={styles.section} aria-labelledby="timeline-heading">
       <Container className={styles.inner}>

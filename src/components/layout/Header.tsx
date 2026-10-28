@@ -17,6 +17,10 @@ export function Header() {
   const pathname = usePathname();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       <header className={styles.header}>

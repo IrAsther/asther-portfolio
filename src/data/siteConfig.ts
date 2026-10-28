@@ -5,6 +5,8 @@ export interface SiteConfig {
   description: string;
   colors: {
     deepTeal: string;
+    orange: string;
+    warmPeach: string;
     brightOrange: string;
     cream: string;
   };
@@ -16,8 +18,10 @@ export const siteConfig: SiteConfig = {
   title: "Software Developer & AI/ML Enthusiast",
   description: "Personal Digital Portfolio of Asther Irakaza — Software Developer & AI/ML Enthusiast.",
   colors: {
-    deepTeal: "#023341",
-    brightOrange: "#FD5E02",
-    cream: "#FCF5E3",
+    deepTeal: "#01605A",
+    orange: "#FF862D",
+    warmPeach: "#FFD0A8",
+    brightOrange: "#FF862D",
+    cream: "#FFD0A8",
   },
 };

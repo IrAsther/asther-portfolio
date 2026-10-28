@@ -1,40 +1,50 @@
 /**
  * Design Tokens — Asther Irakaza Personal Digital Portfolio
  * Core Palette:
- * - Deep Teal: #023341 (Primary Brand)
- * - Bright Orange: #FD5E02 (Accent / CTA)
- * - Cream: #FCF5E3 (Primary Light Background)
+ * - Deep Teal: #01605A (Primary Brand)
+ * - Orange: #FF862D (Main Accent / CTA)
+ * - Warm Peach: #FFD0A8 (Secondary Supporting Color)
  */
 
 :root {
   /* --- Brand Base Colors --- */
-  --brand-deep-teal: #023341;
-  --brand-bright-orange: #FD5E02;
-  --brand-cream: #FCF5E3;
+  --brand-deep-teal: #01605A;
+  --brand-orange: #FF862D;
+  --brand-warm-peach: #FFD0A8;
+
+  /* RGB channels for opacity composition */
+  --brand-deep-teal-rgb: 1, 96, 90;
+  --brand-orange-rgb: 255, 134, 45;
+  --brand-warm-peach-rgb: 255, 208, 168;
+
+  /* Backward compatibility aliases */
+  --brand-bright-orange: #FF862D;
+  --brand-cream: #FFD0A8;
 
   /* --- Derived Semantic Tokens (Default Light Theme) --- */
-  --color-bg: #FCF5E3;
-  --color-bg-alt: #F4ECCF;
-  --color-surface: #F5EED5;
-  --color-surface-hover: #ECE0BD;
-  --color-border: #DECFA7;
-  --color-border-subtle: #EADEC2;
-  --color-border-hover: #CDBA8A;
+  --color-bg: #FAF8F5;
+  --color-bg-alt: #F3EFE9;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F7F3EC;
+  --color-border: #E2D9CE;
+  --color-border-subtle: #EDE5DC;
+  --color-border-hover: #CFC2B3;
 
-  --color-text: #023341;
-  --color-text-muted: #214E5B;
-  --color-text-subtle: #4A707B;
-  --color-text-inverse: #FCF5E3;
+  --color-text: #01605A;
+  --color-text-muted: #11534E;
+  --color-text-subtle: #2D6B66;
+  --color-text-inverse: #FFFFFF;
+  --color-highlight: #FFD0A8;
 
-  --color-accent: #FD5E02;
-  --color-accent-hover: #E05200;
-  --color-accent-subtle: rgba(253, 94, 2, 0.12);
-  --color-accent-contrast: #FFFFFF;
+  --color-accent: #FF862D;
+  --color-accent-hover: #E9731C;
+  --color-accent-subtle: rgba(255, 134, 45, 0.12);
+  --color-accent-contrast: #012825;
 
-  --color-focus: #FD5E02;
-  --color-focus-outline: rgba(253, 94, 2, 0.35);
+  --color-focus: #FF862D;
+  --color-focus-outline: rgba(255, 134, 45, 0.35);
 
-  --color-backdrop: rgba(2, 51, 65, 0.6);
+  --color-backdrop: rgba(1, 96, 90, 0.65);
 
   /* --- Typography --- */
   /* Display / Major Headings: Archivo Black (400 only) */
@@ -105,9 +115,9 @@
   --radius-full: 9999px;
 
   /* --- Shadows --- */
-  --shadow-sm: 0 1px 2px rgba(2, 51, 65, 0.06);
-  --shadow-md: 0 4px 12px rgba(2, 51, 65, 0.08);
-  --shadow-lg: 0 10px 25px rgba(2, 51, 65, 0.12);
+  --shadow-sm: 0 1px 2px rgba(1, 96, 90, 0.06);
+  --shadow-md: 0 4px 12px rgba(1, 96, 90, 0.08);
+  --shadow-lg: 0 10px 25px rgba(1, 96, 90, 0.12);
   --shadow-focus: 0 0 0 3px var(--color-focus-outline);
 
   /* --- Transitions --- */
@@ -124,32 +134,33 @@
 
 /* --- Dark Theme Tokens --- */
 [data-theme="dark"] {
-  --color-bg: #023341;
-  --color-bg-alt: #032b37;
-  --color-surface: #034052;
-  --color-surface-hover: #054e63;
-  --color-border: #0b4e63;
-  --color-border-subtle: #054153;
-  --color-border-hover: #116580;
+  --color-bg: #012E2B;
+  --color-bg-alt: #012422;
+  --color-surface: #013E3A;
+  --color-surface-hover: #01524D;
+  --color-border: #01605A;
+  --color-border-subtle: #014A45;
+  --color-border-hover: #027A73;
 
-  --color-text: #FCF5E3;
-  --color-text-muted: #C5D5D8;
-  --color-text-subtle: #8BAAB0;
-  --color-text-inverse: #023341;
+  --color-text: #F5FAF9;
+  --color-text-muted: #B8D6D3;
+  --color-text-subtle: #7EA9A4;
+  --color-text-inverse: #012E2B;
+  --color-highlight: #FFD0A8;
 
-  --color-accent: #FD5E02;
-  --color-accent-hover: #FF7526;
-  --color-accent-subtle: rgba(253, 94, 2, 0.16);
-  --color-accent-contrast: #FFFFFF;
+  --color-accent: #FF862D;
+  --color-accent-hover: #FFA057;
+  --color-accent-subtle: rgba(255, 134, 45, 0.16);
+  --color-accent-contrast: #012421;
 
-  --color-focus: #FD5E02;
-  --color-focus-outline: rgba(253, 94, 2, 0.45);
+  --color-focus: #FF862D;
+  --color-focus-outline: rgba(255, 134, 45, 0.45);
 
   --color-backdrop: rgba(0, 0, 0, 0.75);
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.55);
 }
 
 /* --- Accessibility: Prefers Reduced Motion --- */

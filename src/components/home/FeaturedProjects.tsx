@@ -168,7 +168,11 @@ function ProjectExpanded({
 /* ─────────────────────────────────────────
    Main section
 ───────────────────────────────────────── */
-export function FeaturedProjects() {
+export function FeaturedProjects({
+  projects = featuredProjects,
+}: {
+  projects?: Project[];
+} = {}) {
   const [expanded, setExpanded] = useState<Project | null>(null);
 
   const handleOpen = useCallback((project: Project) => {
@@ -212,7 +216,7 @@ export function FeaturedProjects() {
 
           {/* Project grid */}
           <div className={styles.grid}>
-            {featuredProjects.map((project) => (
+            {projects.map((project) => (
               <article
                 key={project.id}
                 className={`${styles.card} ${

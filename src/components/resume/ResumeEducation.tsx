@@ -1,8 +1,12 @@
 import { Container } from "@/components/ui/Container";
-import { resumeEducation } from "@/data/resume";
+import { resumeEducation, type ResumeEducationItem } from "@/data/resume";
 import styles from "./ResumeEducation.module.css";
 
-export function ResumeEducation() {
+export function ResumeEducation({
+  education = resumeEducation,
+}: {
+  education?: ResumeEducationItem[];
+} = {}) {
   return (
     <section className={styles.section} aria-labelledby="resume-education-heading">
       <Container>
@@ -21,7 +25,7 @@ export function ResumeEducation() {
         </div>
 
         <div className={styles.list}>
-          {resumeEducation.map((item) => (
+          {education.map((item) => (
             <article key={item.institution} className={styles.itemCard}>
               <div className={styles.cardTop}>
                 <div className={styles.institutionGroup}>

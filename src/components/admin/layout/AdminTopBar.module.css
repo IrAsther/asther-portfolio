@@ -1,0 +1,133 @@
+.topBar {
+  height: 60px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--z-nav, 50) - 1);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.mobileMenuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crumbItem {
+  color: var(--color-text-subtle);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.crumbItem:hover {
+  color: var(--color-accent);
+}
+
+.crumbSeparator {
+  color: var(--color-border);
+}
+
+.crumbCurrent {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+.prototypeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-family-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  background-color: rgba(255, 134, 45, 0.12);
+  color: #FF862D;
+  border: 1px solid rgba(255, 134, 45, 0.35);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.pulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background-color: #FF862D;
+}
+
+.profileMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.userDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: #01605A;
+}
+
+@media (max-width: 1023px) {
+  .mobileMenuBtn {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .topBar {
+    padding: 0 var(--space-4);
+  }
+
+  .prototypeBadge {
+    display: none;
+  }
+}

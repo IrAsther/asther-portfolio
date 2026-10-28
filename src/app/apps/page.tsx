@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getPublishedApplications } from "@/lib/data";
 import { appsData } from "@/data/apps";
 import { AppsBackground } from "@/components/apps/AppsBackground";
 import { AppsHero } from "@/components/apps/AppsHero";
@@ -15,9 +16,11 @@ export const metadata: Metadata = {
     "Applications and digital products built by Asther Irakaza — from mobile daily utilities to intelligent EdTech platforms and AI-assisted study tools.",
 };
 
-export default function AppsPage() {
-  const featuredApp = appsData.find((a) => a.featured) || appsData[0];
-  const gridApps = appsData.filter((a) => !a.featured);
+export default async function AppsPage() {
+  const publishedApps = await getPublishedApplications();
+  const apps = publishedApps.length > 0 ? publishedApps : appsData;
+  const featuredApp = apps.find((a) => a.featured) || apps[0];
+  const gridApps = apps.filter((a) => !a.featured);
 
   return (
     <div className={styles.pageWrapper}>
@@ -27,8 +30,8 @@ export default function AppsPage() {
       {/* Page content flow */}
       <main className={styles.pageContent}>
         <AppsHero />
-        <FeaturedApp app={featuredApp} />
-        <AppsGrid apps={gridApps} />
+        {featuredApp && <FeaturedApp app={featuredApp} />}
+        {gridApps.length > 0 && <AppsGrid apps={gridApps} />}
         <ProductProcess />
         <TechnologyDirection />
         <AppsCTA />

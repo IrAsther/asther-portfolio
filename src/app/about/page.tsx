@@ -6,6 +6,7 @@ import { AboutSkills } from "@/components/about/AboutSkills";
 import { AboutTimeline } from "@/components/about/AboutTimeline";
 import { AboutGallery } from "@/components/about/AboutGallery";
 import { AboutCTA } from "@/components/about/AboutCTA";
+import { getResumeData } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About — Asther Irakaza",
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
     "About Asther Irakaza — Computer Science student, Software Developer, AI/ML enthusiast, and Graphic Designer building practical digital solutions.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const resumeData = await getResumeData();
+
   return (
     <main id="main-content">
       {/* 01 — Hero */}
@@ -29,7 +32,7 @@ export default function AboutPage() {
       <AboutSkills />
 
       {/* 05 — Timeline */}
-      <AboutTimeline />
+      <AboutTimeline journey={resumeData.journey} />
 
       {/* 06 — Design gallery */}
       <AboutGallery />

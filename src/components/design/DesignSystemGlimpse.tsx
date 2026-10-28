@@ -3,10 +3,9 @@ import { Container } from "@/components/ui/Container";
 import styles from "./DesignSystemGlimpse.module.css";
 
 const swatches = [
-  { name: "Deep Teal", hex: "#023341", role: "Primary / Text", colorVar: "var(--brand-deep-teal)" },
-  { name: "Bright Orange", hex: "#FD5E02", role: "Accent / Focal", colorVar: "var(--brand-bright-orange)" },
-  { name: "Warm Cream", hex: "#FCF5E3", role: "Base Canvas", colorVar: "var(--brand-cream)" },
-  { name: "Muted Teal", hex: "#214E5B", role: "Technical Subtext", colorVar: "var(--color-text-muted)" },
+  { name: "Deep Teal", hex: "#01605A", role: "Primary Brand", colorVar: "var(--brand-deep-teal)" },
+  { name: "Orange", hex: "#FF862D", role: "Main Accent", colorVar: "var(--brand-orange)" },
+  { name: "Warm Peach", hex: "#FFD0A8", role: "Secondary Supporting", colorVar: "var(--brand-warm-peach)" },
 ];
 
 export function DesignSystemGlimpse() {

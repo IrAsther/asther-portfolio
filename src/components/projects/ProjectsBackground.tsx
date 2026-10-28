@@ -10,7 +10,7 @@ import styles from "./ProjectsBackground.module.css";
  * 2. Horizontal datum axis (derived from the horizontal crossbar intersecting the logo sphere).
  * 3. Radial tangent alignment lines (echoing the diagonal ribbon trajectory).
  * 4. Sweeping bottom orbital arc (reflecting the logo's outer curved baseline).
- * 5. Low-opacity brand orange accents (#FD5E02) and deep teal (#023341) hairlines.
+ * 5. Low-opacity brand orange accents (#FF862D) and deep teal (#01605A) hairlines.
  */
 export function ProjectsBackground() {
   return (

@@ -19,7 +19,7 @@
   line-height: 0.95;
 
   /* Light theme: deep teal */
-  color: var(--color-text); /* #023341 in light, #FCF5E3 in dark via token */
+  color: var(--color-text); /* #01605A in light, token in dark */
 
   /* Micro-transitions for theme switching */
   transition: color var(--transition-base);
@@ -36,7 +36,7 @@
 
 /* Final "R" — accent focal point */
 .accentLetter {
-  color: var(--color-accent); /* #FD5E02 */
+  color: var(--color-accent); /* #FF862D */
   transition: color var(--transition-base);
 }
 
@@ -108,7 +108,7 @@
 
 /* ============================================================
    DARK THEME
-   color-text token already resolves to #FCF5E3 in dark mode —
+   color-text token already resolves in dark mode —
    no override needed for .letters.
-   accent token stays #FD5E02 in both themes — no override needed.
+   accent token stays #FF862D in both themes — no override needed.
    ============================================================ */

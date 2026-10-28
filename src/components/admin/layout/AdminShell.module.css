@@ -1,0 +1,69 @@
+.shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.desktopSidebarWrap {
+  display: block;
+  flex-shrink: 0;
+}
+
+.mainArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.contentWrapper {
+  flex: 1;
+  padding: var(--space-8);
+  max-width: 1360px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Mobile Drawer Overlay */
+.drawerOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-backdrop, rgba(1, 96, 90, 0.65));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: var(--z-modal, 100);
+}
+
+.drawerContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  z-index: calc(var(--z-modal, 100) + 1);
+  transform: translateX(-100%);
+  transition: transform var(--transition-base);
+}
+
+.drawerOpen .drawerOverlay {
+  display: block;
+}
+
+.drawerOpen .drawerContent {
+  transform: translateX(0);
+}
+
+@media (max-width: 1023px) {
+  .desktopSidebarWrap {
+    display: none;
+  }
+
+  .contentWrapper {
+    padding: var(--space-6) var(--space-4);
+  }
+}

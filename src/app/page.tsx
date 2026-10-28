@@ -6,6 +6,7 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { SkillsPreview } from "@/components/home/SkillsPreview";
 import { DesignPreview } from "@/components/home/DesignPreview";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { getFeaturedProjects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Asther Irakaza — Software Developer & AI/ML Enthusiast",
@@ -13,13 +14,15 @@ export const metadata: Metadata = {
     "Personal portfolio of Asther Irakaza — Software Developer, AI/ML Enthusiast, and Graphic Designer. Practical engineering, intelligent systems, and digital product design.",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featured = await getFeaturedProjects();
+
   return (
     <>
       <Hero />
       <Introduction />
       <BuildCategories />
-      <FeaturedProjects />
+      <FeaturedProjects projects={featured} />
       <SkillsPreview />
       <DesignPreview />
       <FinalCTA />

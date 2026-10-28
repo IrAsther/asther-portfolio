@@ -112,7 +112,7 @@ export const designWorks: DesignWork[] = [
     category: "Branding & Visual Patterns",
     categoryKey: "branding",
     description:
-      "Custom abstract visual asset exploring fluid, organic contours in the portfolio's Bright Orange (#FD5E02) and Cream (#FCF5E3) palette.",
+      "Custom abstract visual asset exploring fluid, organic contours in the portfolio's Orange (#FF862D) and Warm Peach (#FFD0A8) palette.",
     image: "/design/pattern-1.jpg",
     width: 736,
     height: 1104,
