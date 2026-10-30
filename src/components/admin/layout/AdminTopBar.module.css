@@ -1,5 +1,5 @@
 .topBar {
-  height: 60px;
+  height: 64px;
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   display: flex;
@@ -23,14 +23,22 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
   color: var(--color-text);
   cursor: pointer;
   flex-shrink: 0;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mobileMenuBtn:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-accent);
 }
 
 .breadcrumbs {
@@ -98,7 +106,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-1) var(--space-2);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
@@ -124,7 +133,7 @@
 
 @media (max-width: 640px) {
   .topBar {
-    padding: 0 var(--space-4);
+    padding: 0 var(--space-3);
   }
 
   .prototypeBadge {

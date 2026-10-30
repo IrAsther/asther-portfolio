@@ -1,7 +1,7 @@
 /* ============================================================
    DesignWorks.module.css
    Editorial & architectural grid for selected design
-   Zero rounded corners · Asymmetric layout · Minimal captions
+   Zero rounded corners — Asymmetric layout — Minimal captions
    ============================================================ */
 
 .section {
@@ -11,9 +11,9 @@
   background-color: transparent;
 }
 
-/* ────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    Section Header Strip
-   ──────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────── */
 .sectionHeader {
   display: flex;
   align-items: baseline;
@@ -60,9 +60,9 @@
   color: var(--color-text-subtle);
 }
 
-/* ────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    Filter and Search Controls
-   ──────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────── */
 .controlsRow {
   display: flex;
   align-items: center;
@@ -83,7 +83,8 @@
   font-family: var(--font-family-mono);
   font-size: 0.75rem;
   letter-spacing: 0.05em;
-  padding: 0.35rem 0.75rem;
+  padding: 0 0.75rem;
+  min-height: 44px;
   background-color: transparent;
   color: var(--color-text-subtle);
   border: 1px solid var(--color-border);
@@ -107,7 +108,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0.75rem;
+  padding: 0 0.75rem;
+  min-height: 44px;
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
   min-width: 220px;
@@ -121,6 +123,7 @@
   font-family: var(--font-family-sans);
   font-size: 0.8125rem;
   width: 100%;
+  min-height: 44px;
 }
 
 .searchInput::placeholder {
@@ -153,9 +156,9 @@
   max-width: 420px;
 }
 
-/* ────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    Grid Architecture
-   ──────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────── */
 .grid {
   display: flex;
   flex-direction: column;
@@ -258,9 +261,9 @@
   white-space: nowrap;
 }
 
-/* ────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    Responsive
-   ──────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .supportingGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -273,6 +276,17 @@
 }
 
 @media (max-width: 640px) {
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .searchWrap {
+    min-width: 0;
+    width: 100%;
+  }
+
   .supportingGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -293,9 +307,9 @@
   }
 }
 
-/* ────────────────────────────────────────────────────────────
+/* ─────────────────────────────────────────────────────────────
    Reduced Motion
-   ──────────────────────────────────────────────────────────── */
+   ───────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .workImage {
     transition: none !important;

@@ -7,6 +7,7 @@
   flex-direction: column;
   flex-shrink: 0;
   height: 100vh;
+  height: 100dvh;
   position: sticky;
   top: 0;
   z-index: var(--z-nav, 50);
@@ -88,7 +89,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-2-5, 10px) var(--space-3);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-xs);
   color: #D3E4E2;
   text-decoration: none;
@@ -165,6 +167,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 44px;
   color: #FFD0A8;
   text-decoration: none;
   font-family: var(--font-family-mono);
@@ -190,8 +193,8 @@
 }
 
 .userAvatar {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-full);
   background-color: #FF862D;
   color: #012825;
@@ -231,7 +234,10 @@
   background: transparent;
   border: 1px solid #014E48;
   color: #FFD0A8;
-  padding: 6px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   cursor: pointer;
   display: flex;
@@ -245,4 +251,3 @@
   border-color: #EF4444;
   color: #EF4444;
 }
-

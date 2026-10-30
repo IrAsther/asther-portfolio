@@ -26,6 +26,7 @@
   width: 100%;
   max-width: 540px;
   max-height: 90vh;
+  max-height: calc(100dvh - 32px);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -70,8 +71,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
@@ -102,4 +105,25 @@
   padding: var(--space-4) var(--space-6);
   border-top: 1px solid var(--color-border);
   background-color: var(--color-bg);
+}
+
+@media (max-width: 639px) {
+  .modalHeader {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .modalBody {
+    padding: var(--space-4);
+  }
+
+  .modalFooter {
+    padding: var(--space-3) var(--space-4);
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .modalFooter > * {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/lib/theme/ThemeProvider";
 import { ThemeScript } from "@/lib/theme/ThemeScript";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SplashLoader } from "@/components/splash/SplashLoader";
 import "./globals.css";
 
 /* ── Display / Major Headings: Archivo Black (400 only) ─────────── */
@@ -58,6 +59,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
+          <SplashLoader />
           <a href="#main-content" className="skipLink">
             Skip to main content
           </a>

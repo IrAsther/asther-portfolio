@@ -20,7 +20,9 @@
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 320px;
+  max-width: min(320px, calc(100vw - 48px));
+  height: 100vh;
+  height: 100dvh;
   background-color: var(--color-bg);
   border-left: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
@@ -30,6 +32,8 @@
   transform: translateX(100%);
   transition: transform var(--transition-base);
   padding: var(--space-6);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawer.open {
@@ -67,7 +71,9 @@
   align-items: center;
   justify-content: center;
   width: 44px;
+  min-width: 44px;
   height: 44px;
+  min-height: 44px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);

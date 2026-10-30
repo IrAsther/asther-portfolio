@@ -80,6 +80,7 @@
 .contactBtn {
   border-color: var(--color-text);
   color: var(--color-text);
+  min-height: 44px;
 }
 
 .contactBtn:hover:not(:disabled) {
@@ -103,6 +104,17 @@
   .actions {
     flex-direction: column;
     width: 100%;
+  }
+
+  .actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 479px) {
+  .card {
+    padding: var(--space-8) var(--space-4);
   }
 }
 

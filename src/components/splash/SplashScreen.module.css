@@ -1,0 +1,420 @@
+/* ==========================================================================
+   SplashScreen.module.css — Cinematic Intro Sequence
+   Asther Irakaza Portfolio · CSS 3D Animation
+   ========================================================================== */
+
+/* ── Stage ──────────────────────────────────────────────────────────────── */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #020F12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* GPU layer promotion */
+  will-change: opacity;
+  /* Exit transition: fade to transparent, then unmount */
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stage.exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Ambient grid background ────────────────────────────────────────────── */
+.gridBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(2, 51, 65, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 51, 65, 0.55) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0;
+  animation: fadeInGrid 1.2s ease 0.1s forwards;
+}
+
+@keyframes fadeInGrid {
+  to { opacity: 1; }
+}
+
+/* ── Radial teal vignette ───────────────────────────────────────────────── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    transparent 30%,
+    #020F12 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle top-left ambient light pulse */
+.ambientLight {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    circle at center,
+    rgba(2, 51, 65, 0.35) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: ambientReveal 2.5s ease 0.5s forwards;
+}
+
+/* Subtle bottom-right orange warmth */
+.warmLight {
+  position: absolute;
+  bottom: -20%;
+  right: -15%;
+  width: 55%;
+  height: 55%;
+  background: radial-gradient(
+    circle at center,
+    rgba(253, 94, 2, 0.12) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  animation: ambientReveal 2s ease 1.2s forwards;
+}
+
+@keyframes ambientReveal {
+  to { opacity: 1; }
+}
+
+/* ── 3D scene container ─────────────────────────────────────────────────── */
+.scene {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(24px, 4vh, 40px);
+  perspective: 1200px;
+  text-align: center;
+  padding: 0 clamp(16px, 5vw, 48px);
+}
+
+/* ── Brand monogram ─────────────────────────────────────────────────────── */
+.monogramWrap {
+  position: relative;
+  width: clamp(120px, 22vw, 200px);
+  height: clamp(120px, 22vw, 200px);
+  opacity: 0;
+  animation:
+    monogramReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards,
+    monogramFloat 7s ease-in-out 1.6s infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes monogramReveal {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateX(40deg) rotateY(-18deg) scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes monogramFloat {
+  0%,  100% { transform: perspective(800px) rotateX(2deg) rotateY(3deg) translateY(0); }
+  33%        { transform: perspective(800px) rotateX(-2deg) rotateY(-2deg) translateY(-8px); }
+  66%        { transform: perspective(800px) rotateX(1deg) rotateY(4deg) translateY(4px); }
+}
+
+/* SVG fills */
+.monogramSvg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 24px rgba(253, 94, 2, 0.35))
+          drop-shadow(0 0 64px rgba(2, 51, 65, 0.6));
+}
+
+/* Scan-line ring that orbits the monogram */
+.orbit {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(253, 94, 2, 0.18);
+  animation: orbitSpin 14s linear infinite;
+  opacity: 0;
+  animation-delay: 1.4s;
+  animation-fill-mode: both;
+}
+
+.orbit::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FD5E02;
+  box-shadow: 0 0 8px #FD5E02, 0 0 20px rgba(253, 94, 2, 0.5);
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); opacity: 0.85; }
+  to   { transform: rotate(360deg); opacity: 0.85; }
+}
+
+/* Corner bracket decorations — top-right */
+.cornerTR {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #FD5E02;
+  border-right: 2px solid #FD5E02;
+  opacity: 0;
+  animation: cornerReveal 0.5s ease 1.0s forwards;
+}
+
+/* Corner bracket decorations — bottom-left */
+.cornerBL {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #FD5E02;
+  border-left: 2px solid #FD5E02;
+  opacity: 0;
+  animation: cornerReveal 0.5s ease 1.1s forwards;
+}
+
+@keyframes cornerReveal {
+  to { opacity: 1; }
+}
+
+/* ── Typography block ───────────────────────────────────────────────────── */
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 1.5vh, 14px);
+}
+
+/* Name */
+.name {
+  font-family: var(--font-archivo-black, "Archivo Black", sans-serif);
+  font-size: clamp(1.75rem, 5.5vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #FCF5E3;
+  margin: 0;
+  line-height: 1;
+  opacity: 0;
+  animation: textReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+  overflow: hidden;
+  clip-path: inset(0 100% 0 0);
+}
+
+.name.revealed {
+  animation:
+    textRevealFull 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0% 0 0);
+    transform: translateY(0);
+  }
+}
+
+/* Accent divider */
+.divider {
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #FD5E02, transparent);
+  animation: dividerExpand 0.7s ease 1.75s forwards;
+  opacity: 0.8;
+}
+
+@keyframes dividerExpand {
+  to { width: clamp(60px, 14vw, 120px); }
+}
+
+/* Tagline */
+.tagline {
+  font-family: var(--font-inter, "Inter", sans-serif);
+  font-size: clamp(0.7rem, 1.8vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(252, 245, 227, 0.55);
+  margin: 0;
+  opacity: 0;
+  animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.0s forwards;
+}
+
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accent dot */
+.accentDot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #FD5E02;
+  margin: 0 6px;
+  vertical-align: middle;
+  box-shadow: 0 0 6px rgba(253, 94, 2, 0.7);
+}
+
+/* ── Progress bar ───────────────────────────────────────────────────────── */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #023341, #FD5E02);
+  animation: progressFill var(--splash-duration, 4s) linear 0.2s forwards;
+  z-index: 3;
+  opacity: 0.75;
+}
+
+@keyframes progressFill {
+  to { width: 100%; }
+}
+
+/* ── Skip button ────────────────────────────────────────────────────────── */
+.skipBtn {
+  position: absolute;
+  bottom: clamp(20px, 4vh, 36px);
+  right: clamp(16px, 3vw, 32px);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  min-height: 44px;
+  min-width: 44px;
+  border: 1px solid rgba(252, 245, 227, 0.2);
+  background-color: transparent;
+  color: rgba(252, 245, 227, 0.5);
+  font-family: var(--font-inter, "Inter", sans-serif);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+  opacity: 0;
+  animation: fadeUpIn 0.6s ease 1.0s forwards;
+}
+
+.skipBtn:hover {
+  color: #FCF5E3;
+  border-color: rgba(253, 94, 2, 0.6);
+  background-color: rgba(253, 94, 2, 0.08);
+}
+
+.skipBtn:focus-visible {
+  outline: 2px solid #FD5E02;
+  outline-offset: 3px;
+}
+
+/* ── Reduced motion overrides ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .monogramWrap {
+    animation: monogramRevealSimple 0.4s ease 0.1s forwards;
+  }
+
+  @keyframes monogramRevealSimple {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .name {
+    animation: simpleFadeIn 0.4s ease 0.3s forwards;
+  }
+
+  .tagline {
+    animation: simpleFadeIn 0.4s ease 0.5s forwards;
+  }
+
+  .gridBg {
+    animation: simpleFadeIn 0.3s ease 0s forwards;
+  }
+
+  .orbit,
+  .ambientLight,
+  .warmLight {
+    animation: simpleFadeIn 0.3s ease 0.2s forwards;
+  }
+
+  @keyframes simpleFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .divider {
+    animation: dividerExpandFast 0.3s ease 0.4s forwards;
+  }
+
+  @keyframes dividerExpandFast {
+    to { width: clamp(60px, 14vw, 120px); }
+  }
+
+  .progressBar {
+    animation: progressFillFast 2s linear 0s forwards;
+  }
+
+  @keyframes progressFillFast {
+    to { width: 100%; }
+  }
+
+  .skipBtn {
+    animation: simpleFadeIn 0.3s ease 0.2s forwards;
+  }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .scene {
+    gap: 20px;
+  }
+
+  .orbit {
+    display: none;
+  }
+}
+

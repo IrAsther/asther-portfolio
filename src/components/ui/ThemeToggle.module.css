@@ -2,17 +2,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
   color: var(--color-text);
   cursor: pointer;
   transition: background-color var(--transition-fast),
-              border-color var(--transition-fast),
-              color var(--transition-fast),
-              transform var(--transition-fast);
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .toggleButton:hover {

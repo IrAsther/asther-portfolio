@@ -7,6 +7,7 @@
 .hero {
   position: relative;
   min-height: calc(100svh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
   display: flex;
   align-items: center;
   background-color: var(--color-bg);
@@ -81,7 +82,8 @@
 
 .heroLogo {
   width: auto;
-  height: 120px; /* Mobile rule: 120px */
+  height: clamp(80px, 15vw, 120px); /* Mobile rule: 120px max */
+  max-width: 100%;
   object-fit: contain;
   display: block;
 }
@@ -105,13 +107,15 @@
 /* ── Main name — Archivo Black display font ─────────────────────── */
 .name {
   font-family: var(--font-family-display);
-  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-size: clamp(2rem, 5.5vw, 4.25rem);
   font-weight: 400;
-  line-height: 0.95;
+  line-height: 0.98;
   letter-spacing: 0.04em;
   color: var(--color-text);
   margin: 0;
   opacity: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
   animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
 
@@ -124,7 +128,7 @@
 /* ── Primary role — orange accent with animated underline ─────── */
 .tagline {
   font-family: var(--font-family-sans);
-  font-size: clamp(var(--font-size-xl), 2.2vw, var(--font-size-2xl));
+  font-size: clamp(var(--font-size-lg), 2.2vw, var(--font-size-2xl));
   font-weight: 600;
   color: var(--color-accent);
   margin: 0;
@@ -182,6 +186,7 @@
 .ctaOutline {
   border-color: var(--color-text);
   color: var(--color-text);
+  min-height: 44px;
 }
 
 .ctaOutline:hover:not(:disabled) {
@@ -386,7 +391,6 @@
   animation: accentPulse 5s ease-in-out 1.2s infinite;
 }
 
-
 /* ============================================================
    BOTTOM FADE
    ============================================================ */
@@ -473,6 +477,14 @@
     max-width: 320px;
   }
 
+  .portraitGrid {
+    inset: 0;
+  }
+
+  .accentLines {
+    display: none;
+  }
+
   /* Disable floating on tablet to prevent clipping overflow */
   .portraitFrame {
     animation: none;
@@ -498,11 +510,13 @@
    ============================================================ */
 @media (max-width: 479px) {
   .hero {
-    padding-block: var(--space-10);
+    min-height: calc(100dvh - var(--header-height));
+    padding-block: var(--space-8);
   }
 
   .name {
-    font-size: clamp(2.1rem, 9vw, 2.75rem);
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+    line-height: 1.05;
   }
 
   .roles {
@@ -510,7 +524,7 @@
   }
 
   .portraitStage {
-    max-width: 260px;
+    max-width: min(260px, 75vw);
   }
 
   /* Simplify on mobile for performance */
@@ -530,6 +544,29 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    gap: var(--space-3);
+  }
+
+  .ctas > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Extra Small Phones (< 375px e.g. iPhone SE)
+   ============================================================ */
+@media (max-width: 374px) {
+  .name {
+    font-size: 1.65rem;
+  }
+
+  .bio {
+    font-size: var(--font-size-base);
+  }
+
+  .tagline {
+    font-size: var(--font-size-base);
   }
 }
 
@@ -547,9 +584,7 @@
   }
 
   .accentH1,
-  .accentH2,
-  .accentV1,
-  .dotAccent2 {
+  .accentH2 {
     animation: none;
   }
 }
