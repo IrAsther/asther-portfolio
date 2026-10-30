@@ -5,6 +5,7 @@ import { AdminShell } from "@/components/admin/layout/AdminShell";
 import { getAuthenticatedAdmin } from "@/lib/auth/server";
 import { AdminAccessDenied } from "@/components/admin/auth/AdminAccessDenied";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
+import { sanitizeAdminRedirect } from "@/lib/auth/utils";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -38,7 +39,8 @@ export default async function AdminLayout({
 
     // 1. Unauthenticated -> redirect to login
     if (!authStatus.isAuthenticated) {
-      redirect(`/admin/login?next=${encodeURIComponent(currentPath || "/admin")}`);
+      const safeNext = sanitizeAdminRedirect(currentPath);
+      redirect(`/admin/login${safeNext && safeNext !== "/admin" ? `?next=${encodeURIComponent(safeNext)}` : ""}`);
     }
 
     // 2. Authenticated but NOT authorized administrator -> 403 Forbidden screen

@@ -1,3 +1,7 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   MediaLibrary.module.css — extended with upload modal + real backend styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .mediaLayout {
   display: flex;
   flex-direction: column;
@@ -26,24 +30,62 @@
   color: var(--color-text-muted);
 }
 
-.toastBanner {
+/* ── Toast notifications ────────────────────────────────────────────────────── */
+
+.toastSuccess {
   padding: var(--space-3) var(--space-4);
-  background-color: rgba(1, 96, 90, 0.12);
+  background-color: rgba(1, 96, 90, 0.1);
   border: 1px solid #01605A;
   border-radius: var(--radius-xs);
-  font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   color: #01605A;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-3);
 }
 
-[data-theme="dark"] .toastBanner {
+.toastError {
+  padding: var(--space-3) var(--space-4);
+  background-color: rgba(229, 62, 62, 0.1);
+  border: 1px solid #E53E3E;
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-sm);
+  color: #E53E3E;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+[data-theme="dark"] .toastSuccess {
   color: #FFD0A8;
+  background-color: rgba(1, 96, 90, 0.15);
 }
 
-/* Toolbar */
+[data-theme="dark"] .toastError {
+  color: #FC8181;
+  background-color: rgba(229, 62, 62, 0.15);
+}
+
+.toastDismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.toastDismiss:hover {
+  opacity: 1;
+}
+
+/* ── Toolbar ────────────────────────────────────────────────────────────────── */
+
 .toolbar {
   display: flex;
   align-items: center;
@@ -145,7 +187,8 @@
   white-space: nowrap;
 }
 
-/* Grid layout */
+/* ── Grid layout ────────────────────────────────────────────────────────────── */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -210,7 +253,8 @@
   color: var(--color-text-subtle);
 }
 
-/* List layout */
+/* ── List layout ────────────────────────────────────────────────────────────── */
+
 .listCard {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -337,12 +381,18 @@
   color: #FF862D;
 }
 
+.iconBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .deleteBtn:hover {
   color: #E53E3E;
   border-color: #E53E3E;
 }
 
-/* Empty state */
+/* ── Empty state ────────────────────────────────────────────────────────────── */
+
 .emptyState {
   padding: var(--space-12) var(--space-6);
   text-align: center;
@@ -360,7 +410,8 @@
   margin: 0;
 }
 
-/* Detail panel (shows when grid item selected) */
+/* ── Detail panel (grid mode only) ─────────────────────────────────────────── */
+
 .detailPanel {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -458,6 +509,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .deleteLinkBtn {
@@ -475,4 +527,168 @@
 
 .deleteLinkBtn:hover {
   color: #E53E3E;
+}
+
+.deleteLinkBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Alt text editing ───────────────────────────────────────────────────────── */
+
+.altDisplayRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.altEditRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.altInput {
+  flex: 1;
+  height: 32px;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  outline: none;
+}
+
+.altInput:focus {
+  border-color: #FF862D;
+  box-shadow: 0 0 0 2px rgba(255, 134, 45, 0.2);
+}
+
+.editAltBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FF862D;
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.editAltBtn:hover {
+  text-decoration: underline;
+}
+
+/* ── Upload modal ───────────────────────────────────────────────────────────── */
+
+.uploadModalBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.uploadField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.uploadLabel {
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+}
+
+.dropZone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-8) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  text-align: center;
+}
+
+.dropZone:hover {
+  border-color: #FF862D;
+  background-color: rgba(255, 134, 45, 0.04);
+}
+
+.dropZoneActive {
+  border-color: #FF862D;
+  background-color: rgba(255, 134, 45, 0.08);
+}
+
+.dropZoneDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.dropZoneContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+}
+
+.dropZoneHint {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+/* ── Spinner ────────────────────────────────────────────────────────────────── */
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Upload feedback ────────────────────────────────────────────────────────── */
+
+.uploadError {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(229, 62, 62, 0.08);
+  border: 1px solid rgba(229, 62, 62, 0.3);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-sm);
+  color: #E53E3E;
+}
+
+.uploadSuccess {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background-color: rgba(1, 96, 90, 0.08);
+  border: 1px solid rgba(1, 96, 90, 0.3);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-sm);
+  color: #01605A;
+}
+
+[data-theme="dark"] .uploadSuccess {
+  color: #FFD0A8;
 }

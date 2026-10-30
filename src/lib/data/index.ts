@@ -6,5 +6,7 @@
 
 export * from "./projects";
 export * from "./applications";
+export * from "./designs";
+export * from "./messages";
 export * from "./resume";
 export * from "./settings";

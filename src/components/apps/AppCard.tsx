@@ -1,13 +1,21 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import type { AppItem } from "@/data/apps";
+import type { ApplicationDTO } from "@/lib/data/applications";
 import styles from "./AppCard.module.css";
 
 interface AppCardProps {
-  app: AppItem;
+  app: AppItem | ApplicationDTO;
   index: number;
 }
 
 export function AppCard({ app, index }: AppCardProps) {
+  const [hasImageError, setHasImageError] = useState(false);
   const indexStr = String(index + 2).padStart(2, "0");
+
+  const hasValidImage = Boolean(app.image && app.image.trim() && !hasImageError);
 
   return (
     <article className={styles.card} aria-labelledby={`app-title-${app.id}`}>
@@ -17,18 +25,32 @@ export function AppCard({ app, index }: AppCardProps) {
         <span className={styles.statusLabel}>{app.status}</span>
       </div>
 
-      {/* Blueprint Visual — Honest architectural abstraction for apps without screenshots */}
-      <div className={styles.blueprintArea} aria-hidden="true">
-        <div className={styles.blueprintGrid} />
-        <div className={styles.blueprintLines}>
-          <div className={styles.bpLine} />
-          <div className={styles.bpLine} />
-          <div className={styles.bpLine} />
+      {/* Visual Header: Real Cover Image or Blueprint Fallback */}
+      {hasValidImage ? (
+        <div className={styles.imageArea}>
+          <Image
+            src={app.image!}
+            alt={`${app.name} interface preview`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
+            className={styles.coverImage}
+            onError={() => setHasImageError(true)}
+          />
         </div>
-        <div className={styles.blueprintCenter}>
-          <span className={styles.bpTag}>{app.category.toUpperCase()}</span>
+      ) : (
+        /* Blueprint Visual — Architectural abstraction for apps without screenshots */
+        <div className={styles.blueprintArea} aria-hidden="true">
+          <div className={styles.blueprintGrid} />
+          <div className={styles.blueprintLines}>
+            <div className={styles.bpLine} />
+            <div className={styles.bpLine} />
+            <div className={styles.bpLine} />
+          </div>
+          <div className={styles.blueprintCenter}>
+            <span className={styles.bpTag}>{app.category.toUpperCase()}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Body */}
       <div className={styles.cardBody}>
@@ -66,4 +88,3 @@ export function AppCard({ app, index }: AppCardProps) {
     </article>
   );
 }
-

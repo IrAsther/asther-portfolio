@@ -425,6 +425,102 @@ export type Database = {
           }
         ];
       };
+      designs: {
+        Row: {
+          category: string;
+          cover_image: string | null;
+          created_at: string;
+          description: string | null;
+          external_url: string | null;
+          featured: boolean;
+          gallery: Json;
+          id: string;
+          project_date: string | null;
+          published: boolean;
+          slug: string;
+          sort_order: number;
+          title: string;
+          tools: string[];
+          updated_at: string;
+        };
+        Insert: {
+          category?: string;
+          cover_image?: string | null;
+          created_at?: string;
+          description?: string | null;
+          external_url?: string | null;
+          featured?: boolean;
+          gallery?: Json;
+          id?: string;
+          project_date?: string | null;
+          published?: boolean;
+          slug: string;
+          sort_order?: number;
+          title: string;
+          tools?: string[];
+          updated_at?: string;
+        };
+        Update: {
+          category?: string;
+          cover_image?: string | null;
+          created_at?: string;
+          description?: string | null;
+          external_url?: string | null;
+          featured?: boolean;
+          gallery?: Json;
+          id?: string;
+          project_date?: string | null;
+          published?: boolean;
+          slug?: string;
+          sort_order?: number;
+          title?: string;
+          tools?: string[];
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      contact_messages: {
+        Row: {
+          archived_at: string | null;
+          created_at: string;
+          id: string;
+          is_read: boolean;
+          message: string;
+          replied_at: string | null;
+          sender_email: string;
+          sender_name: string;
+          status: string;
+          subject: string;
+          website: string | null;
+        };
+        Insert: {
+          archived_at?: string | null;
+          created_at?: string;
+          id?: string;
+          is_read?: boolean;
+          message: string;
+          replied_at?: string | null;
+          sender_email: string;
+          sender_name: string;
+          status?: string;
+          subject: string;
+          website?: string | null;
+        };
+        Update: {
+          archived_at?: string | null;
+          created_at?: string;
+          id?: string;
+          is_read?: boolean;
+          message?: string;
+          replied_at?: string | null;
+          sender_email?: string;
+          sender_name?: string;
+          status?: string;
+          subject?: string;
+          website?: string | null;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;

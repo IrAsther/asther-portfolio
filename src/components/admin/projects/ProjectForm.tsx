@@ -8,6 +8,7 @@ import { ArrowLeft, Save, X, Image as ImageIcon, Sparkles } from "lucide-react";
 import { AdminCard } from "@/components/admin/ui/AdminCard";
 import { AdminBadge } from "@/components/admin/ui/AdminBadge";
 import { Button } from "@/components/ui/Button";
+import { ImageUploader } from "@/components/admin/media/ImageUploader";
 import { AdminProject, ProjectStatusType } from "@/types/admin";
 import {
   createProjectAction,
@@ -500,34 +501,22 @@ export function ProjectForm({ initialData, isEditing = false }: ProjectFormProps
           <AdminCard title="Media & Links">
             <div className={styles.fieldRow}>
               <div className={styles.fieldGroup}>
-                <label className={styles.label} htmlFor="image">
-                  Primary Thumbnail / Screen URL
-                </label>
-                <input
-                  id="image"
-                  name="image"
-                  type="text"
-                  value={formData.image || ""}
-                  onChange={handleTextChange}
-                  placeholder="/projects/dandaza-screen.webp"
-                  className={styles.input}
-                  disabled={isSubmitting}
+                <ImageUploader
+                  value={formData.image}
+                  onChange={(url) => setFormData((prev) => ({ ...prev, image: url }))}
+                  folder="projects"
+                  label="Primary Thumbnail / Screen"
+                  id="project-image-uploader"
                 />
               </div>
 
               <div className={styles.fieldGroup}>
-                <label className={styles.label} htmlFor="secondaryImage">
-                  Secondary Screen / Report URL
-                </label>
-                <input
-                  id="secondaryImage"
-                  name="secondaryImage"
-                  type="text"
-                  value={formData.secondaryImage || ""}
-                  onChange={handleTextChange}
-                  placeholder="/projects/dandaza-report.webp"
-                  className={styles.input}
-                  disabled={isSubmitting}
+                <ImageUploader
+                  value={formData.secondaryImage}
+                  onChange={(url) => setFormData((prev) => ({ ...prev, secondaryImage: url }))}
+                  folder="projects"
+                  label="Secondary Screen / Report"
+                  id="project-sec-image-uploader"
                 />
               </div>
             </div>

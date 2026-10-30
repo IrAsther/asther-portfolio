@@ -72,10 +72,12 @@ export interface AdminMediaAsset {
   id: string;
   filename: string;
   url: string;
+  /** storage path inside the bucket, e.g. "general/1234-file.jpg" */
+  storagePath: string;
   sizeBytes: number;
   mimeType: string;
-  category: "projects" | "design" | "brand" | "portraits";
-  altText: string;
+  category: string;
+  altText: string | null;
   createdAt: string;
 }
 
@@ -86,6 +88,45 @@ export interface AdminActivity {
   title: string;
   timestamp: string;
   user: string;
+}
+
+export type DesignGalleryItem = {
+  url: string;
+  alt: string;
+  caption?: string;
+};
+
+export interface AdminDesign {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+  tools: string[];
+  coverImage: string | null;
+  gallery: DesignGalleryItem[];
+  externalUrl: string | null;
+  projectDate: string | null;
+  published: boolean;
+  featured: boolean;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ContactMessageStatus = "new" | "read" | "replied" | "archived";
+
+export interface AdminContactMessage {
+  id: string;
+  senderName: string;
+  senderEmail: string;
+  subject: string;
+  message: string;
+  status: ContactMessageStatus;
+  isRead: boolean;
+  repliedAt: string | null;
+  archivedAt: string | null;
+  createdAt: string;
 }
 
 export interface AdminSiteSettings {

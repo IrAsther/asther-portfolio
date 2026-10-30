@@ -25,10 +25,12 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
   const resolvedParams = await searchParams;
   const safeNext = sanitizeAdminRedirect(resolvedParams.next);
 
-  // If already authenticated and authorized as an admin, redirect immediately
-  const authStatus = await getAuthenticatedAdmin();
-  if (authStatus.isAuthorizedAdmin) {
-    redirect(safeNext);
+  // If already authenticated and authorized as an admin, and not explicitly logged out or showing error, redirect immediately
+  if (!resolvedParams.status && !resolvedParams.error) {
+    const authStatus = await getAuthenticatedAdmin();
+    if (authStatus.isAuthorizedAdmin) {
+      redirect(safeNext);
+    }
   }
 
   let initialError: string | null = null;

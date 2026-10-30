@@ -1,10 +1,11 @@
 import { Container } from "@/components/ui/Container";
 import { AppCard } from "./AppCard";
 import type { AppItem } from "@/data/apps";
+import type { ApplicationDTO } from "@/lib/data/applications";
 import styles from "./AppsGrid.module.css";
 
 interface AppsGridProps {
-  apps: AppItem[];
+  apps: (AppItem | ApplicationDTO)[];
 }
 
 export function AppsGrid({ apps }: AppsGridProps) {

@@ -8,8 +8,10 @@ import {
   LayoutDashboard,
   FolderGit2,
   Layers,
+  Palette,
   FileText,
   Image as ImageIcon,
+  MessageSquare,
   Settings,
   ExternalLink,
   LogOut,
@@ -65,13 +67,16 @@ export function AdminSidebar({
           label: "Projects",
           href: "/admin/projects",
           icon: FolderGit2,
-          count: "3",
         },
         {
           label: "Applications",
           href: "/admin/apps",
           icon: Layers,
-          count: "3",
+        },
+        {
+          label: "Designs",
+          href: "/admin/designs",
+          icon: Palette,
         },
         {
           label: "Bio & Resume",
@@ -82,7 +87,16 @@ export function AdminSidebar({
           label: "Media Library",
           href: "/admin/media",
           icon: ImageIcon,
-          count: "6",
+        },
+      ],
+    },
+    {
+      title: "COMMUNICATION",
+      items: [
+        {
+          label: "Messages",
+          href: "/admin/messages",
+          icon: MessageSquare,
         },
       ],
     },

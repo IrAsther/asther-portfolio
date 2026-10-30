@@ -10,6 +10,9 @@ import { TechnologyDirection } from "@/components/apps/TechnologyDirection";
 import { AppsCTA } from "@/components/apps/AppsCTA";
 import styles from "./page.module.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Apps — Asther Irakaza",
   description:

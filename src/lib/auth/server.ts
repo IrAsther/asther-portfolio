@@ -1,4 +1,5 @@
 import "server-only";
+import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 
 export interface AdminUser {
@@ -18,16 +19,42 @@ export interface AdminAuthResult {
  * Server-side verification of administrator authorization.
  *
  * Checks:
- * 1. Valid Supabase Auth session via getUser() (validates cryptographic JWT on Supabase Auth server).
- * 2. Active administrator record in public.admin_users (RLS-enforced source of truth).
+ * 1. Fast path: Verifies if proxy.ts already cryptographically authenticated the user
+ *    and verified public.admin_users for this request. This eliminates competing token
+ *    refresh attempts that trigger 'refresh_token_already_used' errors.
+ * 2. Fallback: Full verification via Supabase Auth server and public.admin_users query
+ *    for requests originating outside proxy coverage (e.g. background tasks or direct APIs).
  *
  * Never trusts client state or assumption of role.
  */
 export async function getAuthenticatedAdmin(): Promise<AdminAuthResult> {
   try {
+    // 1. Fast path: Read verified context propagated securely by proxy.ts
+    try {
+      const headerList = await headers();
+      const isVerified = headerList.get("x-admin-auth-verified") === "1";
+      const userId = headerList.get("x-admin-user-id");
+      const userEmail = headerList.get("x-admin-user-email");
+      const userRole = headerList.get("x-admin-user-role");
+
+      if (isVerified && userId) {
+        return {
+          isAuthenticated: true,
+          isAuthorizedAdmin: true,
+          user: {
+            id: userId,
+            email: userEmail || null,
+            role: userRole || "admin",
+          },
+        };
+      }
+    } catch {
+      // In non-request contexts where headers() throws, proceed to fallback
+    }
+
+    // 2. Fallback verification: Authenticate with Supabase Auth server
     const supabase = await createClient();
 
-    // 1. Verify authenticated user identity with Supabase Auth
     const {
       data: { user },
       error: userError,
@@ -38,10 +65,11 @@ export async function getAuthenticatedAdmin(): Promise<AdminAuthResult> {
         isAuthenticated: false,
         isAuthorizedAdmin: false,
         user: null,
+        error: userError?.message || "Not authenticated",
       };
     }
 
-    // 2. Query public.admin_users table for administrator mapping
+    // 3. Query public.admin_users table for administrator mapping
     const { data: adminRecord, error: adminError } = await supabase
       .from("admin_users")
       .select("id, role")

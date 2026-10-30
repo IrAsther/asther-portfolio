@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import type { AppItem } from "@/data/apps";
+import type { ApplicationDTO } from "@/lib/data/applications";
 import styles from "./FeaturedApp.module.css";
 
 interface FeaturedAppProps {
-  app: AppItem;
+  app: AppItem | ApplicationDTO;
 }
 
 export function FeaturedApp({ app }: FeaturedAppProps) {
@@ -64,17 +65,17 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
           {/* Right: Authentic Screenshot Composition */}
           <div className={styles.mediaCol}>
             <div className={styles.screenshotStage}>
-              {/* Primary Screenshot — Tall Mobile Frame */}
+              {/* Primary Screenshot — Tall Frame */}
               {app.image && (
                 <div className={styles.primaryShot}>
                   <div className={styles.shotHeader}>
                     <span className={styles.shotDot} aria-hidden="true" />
-                    <span className={styles.shotLabel}>DANDAZA+ // DASHBOARD</span>
+                    <span className={styles.shotLabel}>{app.name.toUpperCase()} {"//"} INTERFACE</span>
                   </div>
                   <div className={styles.shotImageWrap}>
                     <Image
                       src={app.image}
-                      alt="Dandaza+ mobile application primary interface"
+                      alt={`${app.name} primary interface`}
                       width={720}
                       height={1600}
                       priority
@@ -90,12 +91,12 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
                 <div className={styles.secondaryShot}>
                   <div className={styles.shotHeader}>
                     <span className={styles.shotDot} aria-hidden="true" />
-                    <span className={styles.shotLabel}>REPORTS</span>
+                    <span className={styles.shotLabel}>PREVIEW</span>
                   </div>
                   <div className={styles.shotImageWrap}>
                     <Image
                       src={app.secondaryImage}
-                      alt="Dandaza+ structured report and records screen"
+                      alt={`${app.name} structured report and records screen`}
                       width={720}
                       height={1600}
                       className={styles.shotImage}

@@ -3,12 +3,13 @@ import Link from "next/link";
 import {
   FolderGit2,
   Layers,
-  CheckCircle2,
-  FileEdit,
+  Palette,
+  MessageSquare,
   ArrowRight,
   Plus,
   Settings,
   FileText,
+  Mail,
 } from "lucide-react";
 import { AdminNotice } from "@/components/admin/ui/AdminNotice";
 import { AdminCard } from "@/components/admin/ui/AdminCard";
@@ -16,6 +17,8 @@ import { Button } from "@/components/ui/Button";
 import { initialRecentActivity } from "@/data/adminMockData";
 import { getAllProjectsAdmin } from "@/lib/data/projects";
 import { getAllApplicationsAdmin } from "@/lib/data/applications";
+import { getAllDesignsAdmin } from "@/lib/data/designs";
+import { getAllMessagesAdmin } from "@/lib/data/messages";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 import styles from "./dashboard.module.css";
 
@@ -23,19 +26,27 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
   const isConfigured = isSupabaseConfigured();
-  const [projects, apps] = await Promise.all([
+  const [projects, apps, designs, messages] = await Promise.all([
     getAllProjectsAdmin(),
     getAllApplicationsAdmin(),
+    getAllDesignsAdmin(),
+    getAllMessagesAdmin(),
   ]);
 
   const totalProjects = projects.length;
   const publishedProjects = projects.filter((p) => p.published).length;
+  const draftProjects = projects.filter((p) => !p.published).length;
+
   const totalApps = apps.length;
   const publishedApps = apps.filter((a) => a.published).length;
-  const draftProjects = projects.filter((p) => !p.published).length;
   const draftApps = apps.filter((a) => !a.published).length;
-  const totalPublished = publishedProjects + publishedApps;
-  const totalDrafts = draftProjects + draftApps;
+
+  const totalDesigns = designs.length;
+  const publishedDesigns = designs.filter((d) => d.published).length;
+  const draftDesigns = designs.filter((d) => !d.published).length;
+
+  const totalMessages = messages.length;
+  const unreadMessages = messages.filter((m) => !m.isRead && m.status !== "archived").length;
 
   return (
     <div className={styles.dashboard}>
@@ -58,6 +69,10 @@ export default async function AdminDashboardPage() {
           <Button href="/admin/apps/new" variant="outline" size="sm">
             <Plus size={15} />
             <span>New App</span>
+          </Button>
+          <Button href="/admin/designs/new" variant="outline" size="sm">
+            <Plus size={15} />
+            <span>New Design</span>
           </Button>
         </div>
       </div>
@@ -96,35 +111,39 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
 
-        {/* Card 3: Published Items */}
+        {/* Card 3: Total Designs */}
         <div className={styles.metricCard}>
           <div className={styles.metricTop}>
-            <span className={styles.metricLabel}>Published Publicly</span>
+            <span className={styles.metricLabel}>Designs Portfolio</span>
             <div className={styles.metricIconWrap} aria-hidden="true">
-              <CheckCircle2 size={16} />
+              <Palette size={16} />
             </div>
           </div>
-          <p className={styles.metricValue}>{totalPublished}</p>
+          <p className={styles.metricValue}>{totalDesigns}</p>
           <div className={styles.metricFooter}>
-            <span>Active on public website</span>
+            <span>{publishedDesigns} published live</span>
             <span>·</span>
-            <span>Supabase live</span>
+            <span>{draftDesigns} draft</span>
           </div>
         </div>
 
-        {/* Card 4: Draft / In-Progress */}
+        {/* Card 4: Contact Messages */}
         <div className={styles.metricCard}>
           <div className={styles.metricTop}>
-            <span className={styles.metricLabel}>Draft Workflows</span>
+            <span className={styles.metricLabel}>Messages Inbox</span>
             <div className={styles.metricIconWrap} aria-hidden="true">
-              <FileEdit size={16} />
+              <MessageSquare size={16} />
             </div>
           </div>
-          <p className={styles.metricValue}>{totalDrafts}</p>
+          <p className={styles.metricValue}>{totalMessages}</p>
           <div className={styles.metricFooter}>
-            <span>Unpublished review state</span>
+            <span style={{ color: unreadMessages > 0 ? "#FF862D" : "inherit", fontWeight: unreadMessages > 0 ? 600 : "normal" }}>
+              {unreadMessages} unread message{unreadMessages !== 1 ? "s" : ""}
+            </span>
             <span>·</span>
-            <span>Protected by RLS</span>
+            <Link href="/admin/messages" style={{ color: "inherit", textDecoration: "underline" }}>
+              Open Inbox
+            </Link>
           </div>
         </div>
       </div>
@@ -159,6 +178,17 @@ export default async function AdminDashboardPage() {
           subtitle="Direct shortcuts to core portfolio editors"
         >
           <div className={styles.quickActionList}>
+            <Link href="/admin/designs/new" className={styles.quickActionCard}>
+              <div className={styles.quickActionLeft}>
+                <Plus size={18} className={styles.quickActionIcon} />
+                <div className={styles.quickActionText}>
+                  <span className={styles.quickActionLabel}>Create Design</span>
+                  <span className={styles.quickActionDesc}>Add a visual system or UI design</span>
+                </div>
+              </div>
+              <ArrowRight size={16} className={styles.arrowIcon} />
+            </Link>
+
             <Link href="/admin/projects/new" className={styles.quickActionCard}>
               <div className={styles.quickActionLeft}>
                 <Plus size={18} className={styles.quickActionIcon} />
@@ -176,6 +206,19 @@ export default async function AdminDashboardPage() {
                 <div className={styles.quickActionText}>
                   <span className={styles.quickActionLabel}>Create Application</span>
                   <span className={styles.quickActionDesc}>Add a demo or production application</span>
+                </div>
+              </div>
+              <ArrowRight size={16} className={styles.arrowIcon} />
+            </Link>
+
+            <Link href="/admin/messages" className={styles.quickActionCard}>
+              <div className={styles.quickActionLeft}>
+                <Mail size={18} className={styles.quickActionIcon} />
+                <div className={styles.quickActionText}>
+                  <span className={styles.quickActionLabel}>
+                    View Messages {unreadMessages > 0 && `(${unreadMessages} new)`}
+                  </span>
+                  <span className={styles.quickActionDesc}>Review inquiries and draft email replies</span>
                 </div>
               </div>
               <ArrowRight size={16} className={styles.arrowIcon} />

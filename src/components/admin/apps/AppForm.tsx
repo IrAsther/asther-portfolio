@@ -8,6 +8,7 @@ import { ArrowLeft, Save, X, Image as ImageIcon, Plus, Sparkles } from "lucide-r
 import { AdminCard } from "@/components/admin/ui/AdminCard";
 import { AdminBadge } from "@/components/admin/ui/AdminBadge";
 import { Button } from "@/components/ui/Button";
+import { ImageUploader } from "@/components/admin/media/ImageUploader";
 import { AdminApp, AppStatusType } from "@/types/admin";
 import {
   createAppAction,
@@ -667,33 +668,21 @@ export function AppForm({ initialData, isEditing = false }: AppFormProps) {
             </div>
             <div className={styles.fieldRow} style={{ marginTop: "14px" }}>
               <div className={styles.fieldGroup}>
-                <label className={styles.label} htmlFor="image">
-                  Cover Image URL
-                </label>
-                <input
-                  id="image"
-                  name="image"
-                  type="text"
-                  value={formData.image || ""}
-                  onChange={handleTextChange}
-                  placeholder="/projects/dandaza-screen.webp"
-                  className={styles.input}
-                  disabled={isSubmitting}
+                <ImageUploader
+                  value={formData.image}
+                  onChange={(url) => setFormData((prev) => ({ ...prev, image: url }))}
+                  folder="applications"
+                  label="Cover Image"
+                  id="app-image-uploader"
                 />
               </div>
               <div className={styles.fieldGroup}>
-                <label className={styles.label} htmlFor="secondaryImage">
-                  Secondary / Detail Image URL
-                </label>
-                <input
-                  id="secondaryImage"
-                  name="secondaryImage"
-                  type="text"
-                  value={formData.secondaryImage || ""}
-                  onChange={handleTextChange}
-                  placeholder="/projects/dandaza-report.webp"
-                  className={styles.input}
-                  disabled={isSubmitting}
+                <ImageUploader
+                  value={formData.secondaryImage}
+                  onChange={(url) => setFormData((prev) => ({ ...prev, secondaryImage: url }))}
+                  folder="applications"
+                  label="Secondary / Detail Image"
+                  id="app-sec-image-uploader"
                 />
               </div>
             </div>

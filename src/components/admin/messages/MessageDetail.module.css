@@ -1,0 +1,328 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-sans);
+  transition: color var(--transition-fast);
+}
+
+.backLink:hover {
+  color: var(--color-text);
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.feedbackBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xs);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-sans);
+}
+
+.feedbackSuccess {
+  background-color: rgba(1, 96, 90, 0.1);
+  border: 1px solid #01605A;
+  color: #01605A;
+}
+
+.feedbackError {
+  background-color: rgba(229, 62, 62, 0.1);
+  border: 1px solid #E53E3E;
+  color: #E53E3E;
+}
+
+.feedbackDismiss {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1.125rem;
+  padding: 0;
+}
+
+.messageLayout {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .messageLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mainCol,
+.sideCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.messageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.headerTopRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.subjectTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.statusBadge {
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+
+.statusNew {
+  background-color: rgba(255, 134, 45, 0.15);
+  color: #FF862D;
+}
+
+.statusRead {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-subtle);
+}
+
+.statusReplied {
+  background-color: rgba(1, 96, 90, 0.15);
+  color: #01605A;
+}
+
+.statusArchived {
+  background-color: var(--color-bg);
+  color: var(--color-text-subtle);
+}
+
+.senderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+  background-color: var(--color-bg);
+  padding: var(--space-4);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border);
+}
+
+.senderItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.metaIcon {
+  color: var(--color-text-subtle);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.metaLabel {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.metaValue {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.emailLink {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: #FF862D;
+  text-decoration: none;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+.messageBodySection {
+  padding: var(--space-6) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bodyHeading {
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+.messageTextCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: var(--space-5);
+  line-height: 1.7;
+}
+
+.messageParagraph {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Reply workflow */
+.replyWorkflowSection {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.replyCard {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.replyCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.replyIcon {
+  color: #FF862D;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.replyCardTitle {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 4px 0;
+}
+
+.replyCardSubtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.replyActionsRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.replyNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  line-height: 1.5;
+  background-color: var(--color-surface);
+  padding: var(--space-3);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.noticeIcon {
+  color: #FF862D;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Side Column Meta */
+.sideGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sideRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.sideRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sideKey {
+  font-family: var(--font-family-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.sideVal {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
