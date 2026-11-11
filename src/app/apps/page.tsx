@@ -3,8 +3,7 @@ import { getPublishedApplications } from "@/lib/data";
 import { appsData } from "@/data/apps";
 import { AppsBackground } from "@/components/apps/AppsBackground";
 import { AppsHero } from "@/components/apps/AppsHero";
-import { FeaturedApp } from "@/components/apps/FeaturedApp";
-import { AppsGrid } from "@/components/apps/AppsGrid";
+import { AppsExplorer } from "@/components/apps/AppsExplorer";
 import { ProductProcess } from "@/components/apps/ProductProcess";
 import { TechnologyDirection } from "@/components/apps/TechnologyDirection";
 import { AppsCTA } from "@/components/apps/AppsCTA";
@@ -22,8 +21,6 @@ export const metadata: Metadata = {
 export default async function AppsPage() {
   const publishedApps = await getPublishedApplications();
   const apps = publishedApps.length > 0 ? publishedApps : appsData;
-  const featuredApp = apps.find((a) => a.featured) || apps[0];
-  const gridApps = apps.filter((a) => !a.featured);
 
   return (
     <div className={styles.pageWrapper}>
@@ -33,8 +30,7 @@ export default async function AppsPage() {
       {/* Page content flow */}
       <main className={styles.pageContent}>
         <AppsHero />
-        {featuredApp && <FeaturedApp app={featuredApp} />}
-        {gridApps.length > 0 && <AppsGrid apps={gridApps} />}
+        <AppsExplorer apps={apps} />
         <ProductProcess />
         <TechnologyDirection />
         <AppsCTA />

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import type { AppItem } from "@/data/apps";
 import type { ApplicationDTO } from "@/lib/data/applications";
 import styles from "./AppCard.module.css";
@@ -75,7 +76,7 @@ export function AppCard({ app, index }: AppCardProps) {
         )}
       </div>
 
-      {/* Footer: Tech tags — inline plain text */}
+      {/* Footer: Tech tags + External Link (Task B) */}
       <div className={styles.cardFoot}>
         <div className={styles.techList} aria-label={`Technologies in ${app.name}`}>
           {app.technologies.map((tech, i) => (
@@ -84,6 +85,19 @@ export function AppCard({ app, index }: AppCardProps) {
             </span>
           ))}
         </div>
+
+        {Boolean(app.demoUrl || app.href) && (
+          <a
+            href={app.demoUrl || app.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.visitLink}
+            aria-label={`Visit live ${app.name} application`}
+          >
+            <span>Visit Live App</span>
+            <ExternalLink size={13} aria-hidden="true" />
+          </a>
+        )}
       </div>
     </article>
   );

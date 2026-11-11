@@ -6,6 +6,9 @@ import { ProjectsCTA } from "@/components/projects/ProjectsCTA";
 import { ProjectsBackground } from "@/components/projects/ProjectsBackground";
 import styles from "./page.module.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Projects — Asther Irakaza",
   description:

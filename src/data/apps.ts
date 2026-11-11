@@ -19,6 +19,9 @@ export interface AppItem {
   image?: string;
   secondaryImage?: string;
   href?: string;
+  demoUrl?: string;
+  downloadUrl?: string;
+  githubUrl?: string;
   highlights: string[];
 }
 

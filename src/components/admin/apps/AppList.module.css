@@ -256,3 +256,27 @@
 [data-theme="dark"] .actionFeedback {
   color: #FFD0A8;
 }
+
+@media (max-width: 768px) {
+  .actionBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchFilterRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchWrap {
+    min-width: 100%;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+
+  .actionsCell {
+    justify-content: flex-start;
+  }
+}

@@ -69,7 +69,8 @@
 
 .searchInput {
   width: 100%;
-  height: 38px;
+  height: 44px;
+  min-height: 44px;
   padding: var(--space-2) var(--space-3) var(--space-2) 34px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border);
@@ -97,7 +98,10 @@
 }
 
 .filterTab {
-  padding: 6px 12px;
+  padding: 8px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border: none;
   background: transparent;
   color: var(--color-text-muted);
@@ -364,5 +368,39 @@
   color: var(--color-text-muted);
   max-width: 440px;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .actionBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchFilterRow {
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 100%;
+  }
+
+  .searchWrap {
+    min-width: 100%;
+  }
+
+  .statusFilters {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .bulkBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .bulkActions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 

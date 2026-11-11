@@ -5,8 +5,187 @@
    ============================================================ */
 
 .section {
-  padding-block: var(--space-16) var(--space-20);
+  padding-block: var(--space-8) var(--space-20);
   background-color: transparent;
+}
+
+/* ────────────────────────────────────────────────────────────
+   SEARCH & FILTER BAR (Task A)
+   ──────────────────────────────────────────────────────────── */
+.searchSection {
+  margin-bottom: var(--space-10);
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-3);
+  transition: border-color 200ms ease;
+}
+
+.searchBar:focus-within {
+  border-color: #FD5E02;
+}
+
+.searchFieldWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.searchIcon {
+  color: var(--color-text-subtle);
+  flex-shrink: 0;
+  margin-left: var(--space-2);
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  padding: 0;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.clearSearchBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.clearSearchBtn:hover {
+  color: var(--color-accent);
+  background-color: var(--color-surface-hover);
+}
+
+.searchBadge {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  padding: 4px 10px;
+  border-left: 1px solid var(--color-border-subtle);
+  white-space: nowrap;
+}
+
+/* ────────────────────────────────────────────────────────────
+   EMPTY STATE
+   ──────────────────────────────────────────────────────────── */
+.emptyState {
+  padding: var(--space-16) var(--space-6);
+  border: 1px dashed var(--color-border);
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  margin-block: var(--space-8);
+}
+
+.emptyIconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(253, 94, 2, 0.08);
+  color: #FD5E02;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyTitle {
+  font-family: var(--font-family-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  color: var(--color-text);
+  margin: 0;
+  font-weight: 400;
+}
+
+.emptyText {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  max-width: 480px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.emptyResetBtn {
+  min-height: 44px;
+  padding: 0 var(--space-6);
+  background-color: transparent;
+  color: #FD5E02;
+  border: 1px solid #FD5E02;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyResetBtn:hover {
+  background-color: #FD5E02;
+  color: #FFFFFF;
+}
+
+.searchResultsContainer {
+  margin-top: var(--space-6);
+}
+
+.cardCategory {
+  display: block;
+  font-family: var(--font-family-sans);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-1);
+}
+
+.conceptFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+.conceptInitials {
+  font-family: var(--font-family-display);
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  opacity: 0.7;
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -343,6 +522,19 @@
 }
 
 @media (max-width: 768px) {
+  .searchBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+  }
+
+  .searchBadge {
+    border-left: none;
+    border-top: 1px solid var(--color-border-subtle);
+    padding-top: var(--space-2);
+    text-align: right;
+  }
+
   .flagshipShowcase {
     grid-template-columns: 1fr;
     padding: var(--space-6);

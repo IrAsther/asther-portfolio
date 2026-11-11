@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { AppItem } from "@/data/apps";
 import type { ApplicationDTO } from "@/lib/data/applications";
@@ -60,6 +61,21 @@ export function FeaturedApp({ app }: FeaturedAppProps) {
                 </span>
               ))}
             </div>
+
+            {Boolean(app.demoUrl || app.href) && (
+              <div className={styles.actionRow}>
+                <a
+                  href={app.demoUrl || app.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.visitBtn}
+                  aria-label={`Visit live ${app.name} application`}
+                >
+                  <span>Visit Live App</span>
+                  <ExternalLink size={15} aria-hidden="true" />
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Right: Authentic Screenshot Composition */}

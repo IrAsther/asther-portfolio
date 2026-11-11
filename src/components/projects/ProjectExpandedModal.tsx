@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { X, ExternalLink } from "lucide-react";
 import type { Project } from "@/data/projects";
+import type { ProjectDTO } from "@/lib/data/projects";
 import styles from "./ProjectExpandedModal.module.css";
 
 interface ProjectExpandedModalProps {
-  project: Project;
+  project: Project | ProjectDTO;
   onClose: () => void;
 }
 
@@ -110,12 +111,12 @@ export function ProjectExpandedModal({ project, onClose }: ProjectExpandedModalP
             ) : (
               <div className={styles.conceptBox}>
                 <div className={styles.conceptInitials}>
-                  {project.id === "ai-applied-system" ? "ML" : "WEB"}
+                  {project.category
+                    ? project.category.replace(/[^a-zA-Z]/g, "").slice(0, 3).toUpperCase()
+                    : "SYS"}
                 </div>
                 <p className={styles.conceptCaption}>
-                  {project.id === "ai-applied-system"
-                    ? "Data ingestion and inference endpoint experiments in Python."
-                    : "Accessible component architecture with Next.js and pure CSS Modules."}
+                  {project.direction || project.summary}
                 </p>
               </div>
             )}

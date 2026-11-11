@@ -158,6 +158,33 @@
   border-top: 1px solid var(--color-border-subtle);
 }
 
+.actionRow {
+  margin-top: 1.5rem;
+}
+
+.visitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  background-color: #FD5E02;
+  color: #FFFFFF;
+  border: 1px solid #FD5E02;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+
+.visitBtn:hover {
+  background-color: #E9731C;
+  border-color: #E9731C;
+  transform: translateY(-1px);
+}
+
 .techItem {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-xs);

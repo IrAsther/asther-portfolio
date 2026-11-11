@@ -94,6 +94,34 @@ function validateAppInput(input: Partial<AppInput>): {
     fieldErrors.statusType = `Status type must be one of: ${VALID_APP_STATUS_TYPES.join(", ")}.`;
   }
 
+  // URL Validation (Task B)
+  const isValidHttpUrl = (urlString: string): boolean => {
+    try {
+      const url = new URL(urlString);
+      return url.protocol === "http:" || url.protocol === "https:";
+    } catch {
+      return false;
+    }
+  };
+
+  if (input.demoUrl && input.demoUrl.trim()) {
+    if (!isValidHttpUrl(input.demoUrl.trim())) {
+      fieldErrors.demoUrl = "Demo URL must be a valid absolute URL starting with http:// or https://";
+    }
+  }
+
+  if (input.downloadUrl && input.downloadUrl.trim()) {
+    if (!isValidHttpUrl(input.downloadUrl.trim())) {
+      fieldErrors.downloadUrl = "Download URL must be a valid absolute URL starting with http:// or https://";
+    }
+  }
+
+  if (input.githubUrl && input.githubUrl.trim()) {
+    if (!isValidHttpUrl(input.githubUrl.trim())) {
+      fieldErrors.githubUrl = "GitHub URL must be a valid absolute URL starting with http:// or https://";
+    }
+  }
+
   return {
     valid: Object.keys(fieldErrors).length === 0,
     fieldErrors,

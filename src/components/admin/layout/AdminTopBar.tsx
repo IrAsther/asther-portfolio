@@ -72,9 +72,9 @@ export function AdminTopBar({ onMobileMenuToggle, adminEmail }: AdminTopBarProps
       </div>
 
       <div className={styles.rightSection}>
-        <div className={styles.prototypeBadge} title="Running in frontend prototype mode">
+        <div className={styles.prototypeBadge} title="Authenticated production environment">
           <span className={styles.pulseDot} aria-hidden="true" />
-          <span>Demo State</span>
+          <span>Live Mode</span>
         </div>
 
         <ThemeToggle />
