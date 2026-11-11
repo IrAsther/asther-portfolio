@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
+
 import { ResumeHero } from "@/components/resume/ResumeHero";
 import { ResumeSummary } from "@/components/resume/ResumeSummary";
 import { ResumeSkills } from "@/components/resume/ResumeSkills";
@@ -19,13 +22,16 @@ export default async function ResumePage() {
 
   return (
     <>
-      <ResumeHero />
+      <ResumeHero profile={resumeData.profile} />
       <ResumeSummary />
       <ResumeSkills skillGroups={resumeData.skillGroups} />
       <ResumeEducation education={resumeData.education} />
       <ResumeProjects />
       <ResumeDirection />
-      <ResumeCTA />
+      <ResumeCTA
+        resumeUrl={resumeData.resumeDocument?.url}
+        isPublished={resumeData.resumeDocument?.published}
+      />
     </>
   );
 }

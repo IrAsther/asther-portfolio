@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Mail, Globe, GraduationCap } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { resumeProfile } from "@/data/resume";
+import { resumeProfile, type ResumeProfile } from "@/data/resume";
 import styles from "./ResumeHero.module.css";
 
 function GithubIcon({ size = 16 }: { size?: number }) {
@@ -23,7 +23,13 @@ function GithubIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-export function ResumeHero() {
+interface ResumeHeroProps {
+  profile?: ResumeProfile;
+}
+
+export function ResumeHero({ profile }: ResumeHeroProps) {
+  const data = profile || resumeProfile;
+
   return (
     <section className={styles.hero} aria-labelledby="resume-hero-heading">
       <Container>
@@ -37,12 +43,12 @@ export function ResumeHero() {
           {/* Main Title & Role */}
           <div className={styles.titleGroup}>
             <h1 id="resume-hero-heading" className={styles.name}>
-              {resumeProfile.name}
+              {data.name}
             </h1>
             <div className={styles.roleLine}>
-              <span className={styles.primaryRole}>{resumeProfile.role}</span>
+              <span className={styles.primaryRole}>{data.role}</span>
               <span className={styles.subtitles}>
-                {resumeProfile.subtitles.join(" · ")}
+                {data.subtitles.join(" · ")}
               </span>
             </div>
           </div>
@@ -50,13 +56,13 @@ export function ResumeHero() {
           {/* Professional Positioning Statement */}
           <div className={styles.positioningCard}>
             <span className={styles.positioningLabel}>Professional Positioning</span>
-            <p className={styles.positioningText}>{resumeProfile.positioning}</p>
+            <p className={styles.positioningText}>{data.positioning}</p>
           </div>
 
           {/* Quick Contact & Verification Pills */}
           <div className={styles.contactBar} aria-label="Professional contact and presence">
             <Link
-              href={resumeProfile.contact.github}
+              href={data.contact?.github || "https://github.com/IrAsther"}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.contactPill}
@@ -68,7 +74,7 @@ export function ResumeHero() {
             </Link>
 
             <Link
-              href={resumeProfile.contact.contactRoute}
+              href={data.contact?.contactRoute || "/contact"}
               className={styles.contactPill}
               aria-label="Contact Asther Irakaza"
             >
@@ -77,7 +83,7 @@ export function ResumeHero() {
             </Link>
 
             <Link
-              href={resumeProfile.contact.portfolioRoute}
+              href={data.contact?.portfolioRoute || "/"}
               className={styles.contactPill}
               aria-label="Portfolio Home"
             >
@@ -87,7 +93,7 @@ export function ResumeHero() {
 
             <div className={styles.affiliationPill}>
               <GraduationCap size={16} aria-hidden="true" />
-              <span>{resumeProfile.contact.educationAffiliation}</span>
+              <span>{data.contact?.educationAffiliation || "University of the People"}</span>
             </div>
           </div>
         </div>

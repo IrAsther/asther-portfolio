@@ -1,8 +1,16 @@
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Download } from "lucide-react";
 import styles from "./ResumeCTA.module.css";
 
-export function ResumeCTA() {
+interface ResumeCTAProps {
+  resumeUrl?: string;
+  isPublished?: boolean;
+}
+
+export function ResumeCTA({ resumeUrl, isPublished }: ResumeCTAProps) {
+  const hasPublishedResume = Boolean(resumeUrl && isPublished);
+
   return (
     <section className={styles.section} aria-labelledby="resume-cta-heading">
       <Container>
@@ -18,16 +26,44 @@ export function ResumeCTA() {
               or an educational platform build, I am always open to discussing new technical challenges.
             </p>
 
-            <div className={styles.documentNotice}>
-              <span className={styles.noticeDot} aria-hidden="true" />
-              <span className={styles.noticeText}>
-                Formal PDF CV document is currently in preparation. Direct inquiries and project
-                consultations are welcomed via the contact channel.
-              </span>
-            </div>
+            {hasPublishedResume ? (
+              <div className={styles.documentNotice} style={{ borderColor: "#01605A" }}>
+                <span className={styles.noticeDot} style={{ backgroundColor: "#01605A" }} aria-hidden="true" />
+                <span className={styles.noticeText}>
+                  Verified PDF Curriculum Vitae is available for direct download.
+                </span>
+              </div>
+            ) : (
+              <div className={styles.documentNotice}>
+                <span className={styles.noticeDot} aria-hidden="true" />
+                <span className={styles.noticeText}>
+                  Formal PDF CV document is currently in preparation. Direct inquiries and project
+                  consultations are welcomed via the contact channel.
+                </span>
+              </div>
+            )}
 
             <div className={styles.actions}>
-              <Button href="/contact" variant="primary" size="lg" id="resume-cta-contact">
+              {hasPublishedResume && (
+                <Button
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="primary"
+                  size="lg"
+                  id="resume-cta-download"
+                >
+                  <Download size={18} style={{ marginRight: 6 }} aria-hidden="true" />
+                  Download Resume (PDF)
+                </Button>
+              )}
+              <Button
+                href="/contact"
+                variant={hasPublishedResume ? "outline" : "primary"}
+                size="lg"
+                id="resume-cta-contact"
+                className={hasPublishedResume ? styles.secondaryBtn : undefined}
+              >
                 Get in Touch / Contact
               </Button>
               <Button

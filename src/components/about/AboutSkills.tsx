@@ -1,14 +1,24 @@
 import { Container } from "@/components/ui/Container";
+import type { ResumeSkillGroup } from "@/data/resume";
 import styles from "./AboutSkills.module.css";
 
-const skills = [
+const fallbackSkills = [
   "Python", "C", "JavaScript", "TypeScript",
   "React", "Next.js", "Vue", "Django",
   "HTML", "CSS", "Supabase", "PostgreSQL",
   "AI / ML", "Arduino",
 ];
 
-export function AboutSkills() {
+interface AboutSkillsProps {
+  skillGroups?: ResumeSkillGroup[];
+}
+
+export function AboutSkills({ skillGroups }: AboutSkillsProps) {
+  const displaySkills =
+    skillGroups && skillGroups.length > 0
+      ? Array.from(new Set(skillGroups.flatMap((g) => g.skills)))
+      : fallbackSkills;
+
   return (
     <section className={styles.section} aria-labelledby="skills-heading">
       <Container className={styles.inner}>
@@ -20,7 +30,7 @@ export function AboutSkills() {
         </div>
 
         <ul className={styles.grid} aria-label="Technologies and skills">
-          {skills.map((skill) => (
+          {displaySkills.map((skill) => (
             <li key={skill} className={styles.card}>
               {skill}
             </li>

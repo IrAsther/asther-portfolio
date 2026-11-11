@@ -135,8 +135,13 @@ export async function proxy(request: NextRequest) {
     if (!error && data?.user) {
       user = data.user;
     } else if (error) {
-      // Safe logging for debugging
-      if (error.code !== "refresh_token_already_used") {
+      // Safe logging for debugging: suppress expected unauthenticated state to avoid log pollution
+      const isExpectedNotice =
+        error.code === "refresh_token_already_used" ||
+        error.message === "Auth session missing!" ||
+        error.name === "AuthSessionMissingError";
+
+      if (!isExpectedNotice) {
         console.warn("[Proxy Auth] getUser notice:", error.message);
       }
     }

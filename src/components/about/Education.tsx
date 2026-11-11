@@ -1,8 +1,22 @@
 import { Container } from "@/components/ui/Container";
-import { education } from "@/data/about";
+import { education as staticEducation } from "@/data/about";
+import type { ResumeEducationItem } from "@/data/resume";
 import styles from "./Education.module.css";
 
-export function Education() {
+// Map static EducationEntry → ResumeEducationItem shape for the fallback
+const defaultEducation: ResumeEducationItem[] = staticEducation.map((e) => ({
+  institution: e.institution,
+  field: e.field,
+  status: e.current ? "Currently Enrolled" : "Completed",
+  note: e.note,
+  current: e.current,
+}));
+
+export function Education({
+  education = defaultEducation,
+}: {
+  education?: ResumeEducationItem[];
+} = {}) {
   return (
     <section className={styles.section} aria-labelledby="education-heading">
       <Container className={styles.inner}>
@@ -18,9 +32,9 @@ export function Education() {
 
         {/* Education entries */}
         <div className={styles.entries} role="list">
-          {education.map((entry) => (
+          {education.map((entry, idx) => (
             <article
-              key={entry.institution}
+              key={`${entry.institution}-${entry.field}-${idx}`}
               className={styles.entry}
               role="listitem"
             >

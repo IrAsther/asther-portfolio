@@ -68,6 +68,33 @@ export interface AdminJourneyItem {
   description: string;
 }
 
+export interface AdminBioProfile {
+  name: string;
+  role: string;
+  subtitles: string[];
+  positioning: string;
+  summary: string;
+  github: string;
+  educationAffiliation: string;
+}
+
+export interface AdminResumeDocument {
+  url: string;
+  storagePath: string;
+  filename: string;
+  sizeBytes: number;
+  uploadedAt: string;
+  published: boolean;
+}
+
+export interface AdminContentData {
+  profile: AdminBioProfile;
+  skills: AdminSkillCategory[];
+  education: AdminEducationItem[];
+  journey: AdminJourneyItem[];
+  resumeDocument: AdminResumeDocument | null;
+}
+
 export interface AdminMediaAsset {
   id: string;
   filename: string;

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
+
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutIntro } from "@/components/about/AboutIntro";
 import { AboutStats } from "@/components/about/AboutStats";
@@ -6,6 +9,7 @@ import { AboutSkills } from "@/components/about/AboutSkills";
 import { AboutTimeline } from "@/components/about/AboutTimeline";
 import { AboutGallery } from "@/components/about/AboutGallery";
 import { AboutCTA } from "@/components/about/AboutCTA";
+import { Education } from "@/components/about/Education";
 import { getResumeData } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -29,10 +33,13 @@ export default async function AboutPage() {
       <AboutStats />
 
       {/* 04 — Skills cards */}
-      <AboutSkills />
+      <AboutSkills skillGroups={resumeData.skillGroups} />
 
       {/* 05 — Timeline */}
       <AboutTimeline journey={resumeData.journey} />
+
+      {/* 05b — Education */}
+      <Education education={resumeData.education} />
 
       {/* 06 — Design gallery */}
       <AboutGallery />

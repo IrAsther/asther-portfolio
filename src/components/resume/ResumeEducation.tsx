@@ -25,8 +25,8 @@ export function ResumeEducation({
         </div>
 
         <div className={styles.list}>
-          {education.map((item) => (
-            <article key={item.institution} className={styles.itemCard}>
+          {education.map((item, idx) => (
+            <article key={`${item.institution}-${item.field}-${idx}`} className={styles.itemCard}>
               <div className={styles.cardTop}>
                 <div className={styles.institutionGroup}>
                   <h3 className={styles.institutionName}>{item.institution}</h3>
